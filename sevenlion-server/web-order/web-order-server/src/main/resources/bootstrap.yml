@@ -1,0 +1,39 @@
+server:
+  port: 8601
+spring:
+  application:
+    name: sevenlion-web-order
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+      datasource:
+        ds1:
+          nacos:
+            server-address: localhost:8848
+            dataId: alibaba-demo-order
+            group: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+mybatis-plus:
+  #type-handlers-package: org.uppower.qule.core.typehandler
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+    banner: false
+  mapper-locations: classpath*:/mapper/*.xml
+  check-config-location: true
+

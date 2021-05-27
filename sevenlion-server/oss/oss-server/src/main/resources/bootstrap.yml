@@ -1,0 +1,33 @@
+server:
+  port: 8999
+spring:
+  application:
+    name: sevenlion-oss
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+      datasource:
+        ds1:
+          nacos:
+            server-address: localhost:8848
+            dataId: alibaba-demo-order
+            group: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+oss:
+  url: http://192.168.222.202:9000 #MinIO服务所在地址
+  accessKey: minioadmin #访问的key
+  secretKey: minioadminamt #访问的秘钥
+

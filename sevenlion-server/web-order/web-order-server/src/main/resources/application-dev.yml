@@ -1,0 +1,38 @@
+spring:
+  redis:
+    port: 6379
+  datasource:
+    url: jdbc:mysql://localhost:3306/flower?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 5
+      min-idle: 10
+      max-active: 100
+      max-wait: 60000
+      filters: stat,wall,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: sevenlion
+    password: sevenlion
+    virtual-host: /
+feign:
+  sentinel:
+    enabled: true
+alipay:
+  appId: 2021000116686119
+  gatewayHost: https://openapi.alipaydev.com/gateway.do
+  protocol: http
+  #应用私钥
+  private_key: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCeKaRU5y84LTPrv1BvSfte8YtlAElJQbk+MCeG8DADlWzGKdTMDWUnfCkKpnLmWSx3kEQkJej/o+wDgoLa0qqv32XBZ0fVjhXvgp0cptw7f71k0cr87Ytp9Uw2qjCIE3YLnLI6Vn+JAHsDzvcqWITZWaGLeVTdrOTOI3T+w0vsu92ga4AjCOzayzfsejkZDzKcgTspVTL/ujkRoOJzw/dEWGxQaiVJoCI+A+H5dhlW3x5oSj2YR5wRqe/ektpKKScWqRwvd5XpIp3KN2oVJTogJhHsBxspVAWSR53GD/RRGLv1GBX4uKn0KEGlwaK5LsRJzEO0k0fhzBZWnXFvSSUHAgMBAAECggEAah5+iAjlgceygobGrSTyZ+2hHY9nnKNgav1cSAl37a+gYAVJJfAG4stHrkGn7i3+y+ocDjTxdDTD8kbrDW8z3vUBDRcC96JxzVXRnJvIQJOgu7iXfcTUOa/ABx2BmouUNI5adxH6WC3eW9vNsrfZywt8fFxYOLP8gOMBaL4YfykuihtU9thJsOqOETUJvRV1vQo+BX9ni0cMqUVbBQFWbOnHAb5KESTjpUtY5+aJ94RzE8v/17WuSvEPjFMZg3n6N7yM8P+atSCWzMV2ANPYGDHRM7gL//c2y43BFXeLUWirc3wFjSq15W5lOGdBYuVaMW2IJzOYoEMhwc+tsvIoYQKBgQDcsOWnelm9OthY67OxV6G/EZ2PcvU1igc5/PUs7xMNKLgTwr+h7RMg9OesLHhCKx1AYifR/kwwemiNMzRmleY0QUpIr7PVciw5OTkCMRyYKqefp2IXrQDeiBHyOFvKBNTuAsGuFZW1gr2lNgBInIOy5ifQ0jQFywmOt1ACvgO44wKBgQC3d7KQVqKPoeFRdnPjkOalhr6IVxLy5Rd7hwwkHtRKpR1mh1j8Cnfg7S1EYhToWFy24EwtTxqRPkERdSnVruKTKIOd1ebw5gZeVzdCAwq/F2mqbcNb4pXDGM7IM6WtAV9HXfPM4OBJvpb1WvrilngtpOVLngBW0M41V4Wa1JNwjQKBgEQUSfQdOTu3wG/F3jvx9ZKUo49R/jTS7KHF1/hRlAX2Lrrh0+3mzYTYJ/OkEEERPcfTv8b29Jfr2v7b8elHiqlKDtlXYlmRC/VnIp/7eH+0gNsuboMxOlhrj2WyXxZ14R2/OfIy9Gj2+PvTKck8hyAUAepYPfYfiUY+ZG9EIK/TAoGBAJxIODE/u0YCrT6JWnqU6gRCXXciRR/nCjPNfAggwtG7COpXjPNVr3xITPEdY5Xv/zpAomNOKOFkWGUYmsRNLvAP6N3AYfL+3pnqTUXL9ZGFzhrBWVKiFtSUA0ECzbQroQ/X9l+lhykKUuk50NDHQCQRfMkHFF7fi2hg34xeXCHZAoGBAJiyp8k0rgKmFtYYeb6rfKYtK+x5I/PW6aHE9U1JbALMvHuMPAfMt+p25DoyorfvSqTUBaih1avny6l0xE87YIRrYw53zrYUqRqMAf35wppM/YsDPq7i8pWAByycEk4bxPV9ZR5Dov5SKXQKRf3t3t9zwFjFxnrM9lsmdYyDaoGI
+  #支付宝公钥
+  public_key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo1Wuj7zi3qqNxDDptz+he09DmGSS2DnPEy15jgFLM5+Lipo2a+LCWjm5Saws9CFoOjYsf5wdSW1VfhrLtRDjeRPvq3sUu8s+3L/neuM7s2918HrihB2udEuBU660XOPIKX9Ua7Gyo+1k5yc4sf2cTY4datwvboaw+4Y0mi38qqfNuP/yB67Z2pHWs2eo6knJ8NggAlRRk2U/Am/ipnoUNeiZnE2NXhTAl/9J1Mtfe1hHjoMzQgNlSNwYsukCf9UuhJcb8YefQlQN8bAzH1WX9t1/9rD9sAA5nS6/UfT3GMey3s9sR56/xtHtMNm9guq9kBfym480qr2fqJ2bZkkQbwIDAQAB
+  #异步通知地址
+  notify_url: http://localhost:8601/order/notify
+  #页面跳转路径
+  return_url: http://工程公网访问地址/alipay.trade.page.pay-JAVA-UTF-8/return_url.jsp
+  sign_type: RSA2
+  charset: utf-8

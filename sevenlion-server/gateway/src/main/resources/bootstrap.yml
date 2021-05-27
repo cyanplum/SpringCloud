@@ -1,0 +1,62 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: sevenlion-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        server-addr: localhost:8848
+        prefix: gateway-config
+        file-extension: json
+        group: gateway
+    gateway:
+      routes:
+        - id: sevenlion-web-order
+          uri: lb://sevenlion-web-order
+          filters:
+            - StripPrefix=2
+          predicates:
+            - Path=/web/order/**
+        - id: sevenlion-web-product
+          uri: lb://sevenlion-web-product
+          filters:
+            - StripPrefix=2
+          predicates:
+            - Path=/web/product/**
+        - id: sevenlion-web-user
+          uri: lb://sevenlion-web-user
+          filters:
+            - StripPrefix=2
+          predicates:
+            - Path=/web/user/**
+        - id: sevenlion-back-user
+          uri: lb://sevenlion-back-user
+          filters:
+            - StripPrefix=2
+          predicates:
+            - Path=/back/user/**
+        - id: sevenlion-back-system
+          uri: lb://sevenlion-back-system
+          filters:
+            - StripPrefix=2
+          predicates:
+            - Path=/back/system/**
+#      discovery:
+#        locator:
+#          # 是否与服务发现组件进行结合，通过 serviceId 转发到具体的服务实例。默认为false
+#          enabled: true
+#          lower-case-service-id: true #使用小写service-id
+#      # 处理响应头重复
+#      globalcors:
+#        corsConfigurations:
+#          '[/**]':
+#            #这里有个allowCredentials: true这个东西是设置允许访问携带cookie的，这点一定要和前端对应！
+#            allowCredentials: true
+#            #可以填写多个域名用","隔开 例如 "*"代表允许所有
+#            allowedOrigins: "*"
+#            allowedMethods: "*"
+#            allowedHeaders: "*"
+#            allow-credentials: true
