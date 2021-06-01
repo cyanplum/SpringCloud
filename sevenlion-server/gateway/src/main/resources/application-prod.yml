@@ -1,6 +1,6 @@
 spring:
   application:
-    name: alibaba_demo-gateway
+    name: sevenlion-gateway
 server:
   port: 8081
 management:

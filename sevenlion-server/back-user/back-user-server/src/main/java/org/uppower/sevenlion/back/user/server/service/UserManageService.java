@@ -11,19 +11,30 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.uppower.sevenlion.back.system.common.api.DistrictServiceApi;
 import org.uppower.sevenlion.back.user.dao.entity.AdminUserEntity;
+import org.uppower.sevenlion.back.user.dao.entity.UserEntity;
+import org.uppower.sevenlion.back.user.dao.entity.UserInfoEntity;
 import org.uppower.sevenlion.back.user.dao.mapper.AdminUserMapper;
+import org.uppower.sevenlion.back.user.dao.mapper.UserInfoMapper;
+import org.uppower.sevenlion.back.user.dao.mapper.UserMapper;
 import org.uppower.sevenlion.back.user.server.model.result.AdminUserInfoResult;
 import org.uppower.sevenlion.back.user.server.model.result.AdminUserListResult;
+import org.uppower.sevenlion.back.user.server.model.result.UserInfoResult;
+import org.uppower.sevenlion.back.user.server.model.result.UserListResult;
 import org.uppower.sevenlion.back.user.server.model.vo.AdminUserSaveVO;
 import org.uppower.sevenlion.back.user.server.model.vo.AdminUserUpdateVO;
 import org.uppower.sevenlion.common.enums.BaseStatusEnum;
+import org.uppower.sevenlion.common.enums.VipLevelTypeEnum;
 import org.uppower.sevenlion.common.exceptions.BackException;
 import org.uppower.sevenlion.common.model.Const;
 import org.uppower.sevenlion.common.model.admin.AdminInfo;
 import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.common.utils.CommonResultPage;
+import org.uppower.sevenlion.oss.common.utils.FileUploadUtils;
+import org.uppower.sevenlion.oss.common.utils.OssUtils;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -47,6 +58,12 @@ public class UserManageService {
 
     @Reference(check = false)
     private DistrictServiceApi districtServiceApi;
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
 
     /**
@@ -190,6 +207,69 @@ public class UserManageService {
         adminUserMapper.delete(new QueryWrapper<AdminUserEntity>().eq("super_id",adminInfo.getUserId()));
 
         return CommonResult.success();
+    }
+
+    /**
+     * 查询用户列表
+     * @date 2021/6/1 4:32 下午
+     * @param adminInfo
+     * @param pn
+     * @param pageSize
+     * @param name
+     * @param phone
+     * @return CommonResultPage<UserListResult>
+     * @auther sevenlion
+     */
+    public CommonResultPage<UserListResult> indexUser(AdminInfo adminInfo, Integer pn, Integer pageSize, String name, String phone) {
+        IPage<UserEntity> userEntityIPage = userMapper.selectPage(new Page<UserEntity>(pn, pageSize),
+                new QueryWrapper<UserEntity>()
+                        .lambda()
+                        .eq(name != null, UserEntity::getNickname, name)
+                        .like(phone != null, UserEntity::getPhone, phone));
+        if (userEntityIPage.getRecords().isEmpty()) {
+            return CommonResultPage.success();
+        }
+        List<UserInfoEntity> userInfoEntityList = userInfoMapper.selectList(new QueryWrapper<UserInfoEntity>()
+                .lambda()
+                .in(UserInfoEntity::getUserId, userEntityIPage.getRecords()
+                                .stream()
+                                .map(UserEntity::getId)
+                                .collect(Collectors.toList())));
+        Map<Long, UserInfoEntity> userInfoMap = userInfoEntityList.stream().collect(Collectors.toMap(UserInfoEntity::getUserId, Function.identity()));
+        List<UserListResult> results = userEntityIPage.getRecords().stream().map(it -> {
+            UserListResult userListResult = new UserListResult();
+            BeanUtils.copyProperties(it, userListResult);
+            userListResult.setAvatar(OssUtils.getFileInfoResult(it.getAvatar()));
+            userListResult.setStatusName(BaseStatusEnum.msgByStatus(it.getStatus()));
+            userListResult.setScore(userInfoMap.get(it.getId()).getScore());
+            userListResult.setVipLevel(userInfoMap.get(it.getId()).getVipLevel());
+            userListResult.setVipLevelName(VipLevelTypeEnum.msgByStatus(userListResult.getVipLevel()));
+            return userListResult;
+        }).collect(Collectors.toList());
+        return CommonResultPage.success(results, pn, pageSize);
+    }
+
+    /**
+     * 查询用户详情
+     * @date 2021/6/1 4:35 下午
+     * @param adminInfo
+     * @param id
+     * @return CommonResult<UserInfoResult>
+     * @auther sevenlion
+     */
+    public CommonResult<UserInfoResult> showUser(AdminInfo adminInfo, Long id) {
+        UserEntity userEntity = userMapper.selectById(id);
+        if (userEntity == null) {
+            return CommonResult.failed("用户不存在！");
+        }
+        UserInfoEntity userInfoEntity = userInfoMapper.selectOne(new QueryWrapper<UserInfoEntity>().lambda().eq(UserInfoEntity::getUserId, userEntity.getId()));
+        UserInfoResult result = new UserInfoResult();
+        BeanUtils.copyProperties(userEntity,result);
+        result.setAlipayCount(userInfoEntity.getAlipayCount());
+        result.setAvatar(OssUtils.getFileInfoResult(userEntity.getAvatar()));
+        result.setVipLevelName(VipLevelTypeEnum.msgByStatus(result.getVipLevel()));
+        result.setStatusName(BaseStatusEnum.msgByStatus(result.getStatus()));
+        return CommonResult.success(result);
     }
 
     // TODO: 2021/5/26

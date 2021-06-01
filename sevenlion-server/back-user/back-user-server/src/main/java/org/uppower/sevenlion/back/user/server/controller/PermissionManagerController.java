@@ -14,6 +14,7 @@ import org.uppower.sevenlion.back.user.server.service.PermissionManageService;
 import org.uppower.sevenlion.common.model.admin.AdminInfo;
 import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.common.utils.CommonResultPage;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -39,30 +40,30 @@ public class PermissionManagerController{
 
     @ApiOperation("查询角色列表")
     @GetMapping("/role")
-    public CommonResultPage<RoleListResult> indexRole(AdminInfo adminInfo,
-                                                            @ApiParam("页码") @RequestParam(value = "pn", required = false, defaultValue = "1") Integer pn,
-                                                            @ApiParam("页数大小") @RequestParam(value = "pageSize", required = false, defaultValue = "15") Integer pageSize,
-                                                            @ApiParam("权限名称") @RequestParam(value = "name", required = false) String name) {
+    public CommonResultPage<RoleListResult> indexRole(@ApiIgnore AdminInfo adminInfo,
+                                                      @ApiParam("页码") @RequestParam(value = "pn", required = false, defaultValue = "1") Integer pn,
+                                                      @ApiParam("页数大小") @RequestParam(value = "pageSize", required = false, defaultValue = "15") Integer pageSize,
+                                                      @ApiParam("权限名称") @RequestParam(value = "name", required = false) String name) {
         return permissionManageService.indexRole(adminInfo, pn, pageSize, name);
     }
 
     @ApiOperation("查询角色详情")
     @GetMapping("/role/{id}")
-    public CommonResult<RoleInfoResult> showRole(AdminInfo adminInfo,
+    public CommonResult<RoleInfoResult> showRole(@ApiIgnore AdminInfo adminInfo,
                                                  @ApiParam("权限id") @PathVariable Long id) {
         return permissionManageService.showRole(adminInfo, id);
     }
 
     @ApiOperation("新增角色")
     @PostMapping("/role")
-    public CommonResult saveRole(AdminInfo adminInfo,
+    public CommonResult saveRole(@ApiIgnore AdminInfo adminInfo,
                                  @ApiParam("新增角色对象") @Valid @RequestBody RoleSaveVO vo) {
         return permissionManageService.saveRole(adminInfo, vo);
     }
 
     @ApiOperation("修改角色")
     @PutMapping("/role/{id}")
-    public CommonResult updateRole(AdminInfo adminInfo,
+    public CommonResult updateRole(@ApiIgnore AdminInfo adminInfo,
                                    @ApiParam("角色id") @PathVariable Long id,
                                    @ApiParam("修改角色对象") @Valid @RequestBody RoleUpdateVO vo) {
         return permissionManageService.updateRole(adminInfo, id, vo);
@@ -70,14 +71,14 @@ public class PermissionManagerController{
 
     @ApiOperation("删除角色")
     @DeleteMapping("/role/{id}")
-    public CommonResult deleteRole(AdminInfo adminInfo,
+    public CommonResult deleteRole(@ApiIgnore AdminInfo adminInfo,
                                    @ApiParam("角色id") @PathVariable Long id) {
         return permissionManageService.deleteRole(adminInfo, id);
     }
 
     @ApiOperation("查询当前用户权限列表")
     @GetMapping
-    public CommonResult<List<PermissionInfoResult>> indexPermission(AdminInfo adminInfo) {
+    public CommonResult<List<PermissionInfoResult>> indexPermission(@ApiIgnore AdminInfo adminInfo) {
         return permissionManageService.indexPermission(adminInfo);
     }
 

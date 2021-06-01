@@ -14,7 +14,7 @@ import lombok.Data;
  * * \_______|  /_/        |_|  |___/|___/
  * @date 2021/5/26 1:57 下午
  */
-@ApiModel("权限详情返回集合")
+@ApiModel("权限详情返回集")
 @Data
 public class PermissionInfoResult {
 

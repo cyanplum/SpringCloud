@@ -1,10 +1,12 @@
 spring:
   redis:
     port: 6379
+    host: 114.55.58.31
+    password: 1595904478
   datasource:
-    url: jdbc:mysql://localhost:3306/sevenlion_cloud?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
-    username: root
-    password: 123456
+    url: jdbc:mysql://rm-wz9g7s1hz6b7jw0nq3o.mysql.rds.aliyuncs.com:3306/sevenlion_cloud?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
+    username: sevenlion
+    password: Sevenlion7
     driver-class-name: com.mysql.jdbc.Driver
     druid:
       initial-size: 5
