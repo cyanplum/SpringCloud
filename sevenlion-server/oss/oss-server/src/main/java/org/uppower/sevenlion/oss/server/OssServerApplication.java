@@ -2,7 +2,7 @@ package org.uppower.sevenlion.oss.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.uppower.sevenlion.cloud.security.annotation.EnableSevenlionSecurity;
+import org.uppower.sevenlion.security.annotation.EnableSevenlionSecurity;
 
 /**
  * @author create by:

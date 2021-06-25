@@ -1,6 +1,9 @@
 package org.uppower.sevenlion.back.user.server.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.uppower.sevenlion.back.user.dao.entity.AdminPermissionEntity;
@@ -33,6 +36,7 @@ import java.util.stream.Collectors;
  * * \_______|  /_/        |_|  |___/|___/
  * @date 2021/5/25 6:03 下午
  */
+@Api(tags = "管理用户登录")
 @LoginMapping("/auth/login")
 public class AdminLoginController implements AuthenticationService<AdminLoginVO> {
 
@@ -48,8 +52,9 @@ public class AdminLoginController implements AuthenticationService<AdminLoginVO>
     @Autowired
     private AdminPermissionMapper adminPermissionMapper;
 
+    @ApiOperation("管理用户登录")
     @Override
-    public UserDetails loadUser(AdminLoginVO body, PasswordEncoder passwordEncoder) {
+    public UserDetails loadUser(@ApiParam("登录参数") AdminLoginVO body, PasswordEncoder passwordEncoder) {
         AdminUserEntity adminUserEntity = adminUserMapper.selectOne(new QueryWrapper<AdminUserEntity>().eq("phone", body.getPhone()));
         if (adminUserEntity == null) {
             throw new BackException("用户不存在！");

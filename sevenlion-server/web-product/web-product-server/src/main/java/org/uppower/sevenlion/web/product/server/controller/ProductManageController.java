@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.web.product.common.model.result.CartResult;
 import org.uppower.sevenlion.web.product.common.model.result.ProductResult;
-import org.uppower.sevenlion.web.product.common.model.vo.CartVo;
-import org.uppower.sevenlion.web.product.common.model.vo.ProductOrderVo;
+import org.uppower.sevenlion.web.product.common.model.bo.CartBo;
+import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
 import org.uppower.sevenlion.web.product.server.service.ProductManageService;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class ProductManageController {
     }
 
     @PostMapping("/cutProductStock")
-    public CommonResult cutProductStock(@RequestBody List<ProductOrderVo> productOrders) {
+    public CommonResult cutProductStock(@RequestBody List<ProductOrderBo> productOrders) {
         return productManageService.cutProductStock(productOrders);
     }
 
@@ -52,7 +52,7 @@ public class ProductManageController {
 
 
     @PostMapping("/cart")
-    public CommonResult storeCart(@RequestBody CartVo vo) {
-        return productManageService.storeCart(vo);
+    public CommonResult storeCart(@RequestBody CartBo bo) {
+        return productManageService.storeCart(bo);
     }
 }

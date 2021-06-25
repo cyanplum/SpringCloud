@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.back.system.server.model.result;
+package org.uppower.sevenlion.back.system.server.model.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  */
 @ApiModel("地区详情参数集")
 @Data
-public class DistrictInfoResult {
+public class DistrictInfoVo {
 
     @ApiModelProperty(value = "主键id")
     private Long id;

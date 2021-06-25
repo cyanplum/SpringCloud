@@ -14,9 +14,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties("sevenlion.security")
 public class SevenlionSecurityProperties {
-   
-   public Object getInjectClass;
-   private Class<Object> injectClass;
+
+    private Class<Object> injectClass;
 
     private Integer accessTokenExpireIn;
 

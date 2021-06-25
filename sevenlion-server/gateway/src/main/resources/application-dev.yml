@@ -2,7 +2,7 @@ spring:
   application:
     name: sevenlion-gateway
 server:
-  port: 80
+  port: 7777
 management:
   endpoints:
     web:

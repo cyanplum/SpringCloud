@@ -1,8 +1,8 @@
-package org.uppower.sevenlion.web.product.common.model.vo;
+package org.uppower.sevenlion.common.utils;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * @author create by:
@@ -12,17 +12,20 @@ import lombok.NoArgsConstructor;
  * *  | | | |     / / |__/ | |    | | /  | / /
  * * | |_| |_    / /       | |   | |/   |/ /
  * * \_______|  /_/        |_|  |___/|___/
- * @date 2021/4/1 2:01 下午
+ * @date 2021/6/25 4:20 下午
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class CartVo {
+public class PageInfo<T> {
 
-    private Long id;
+    private List<T> data;
 
-    private Long productId;
+    private long page;
 
-    private Integer number;
+    private long total;
 
+    public PageInfo( List<T> data, long page, long total) {
+        this.data = data;
+        this.page = page;
+        this.total = total;
+    }
 }

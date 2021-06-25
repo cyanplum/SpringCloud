@@ -2,8 +2,8 @@ package org.uppower.sevenlion.web.product.common.client;
 
 import org.springframework.stereotype.Component;
 import org.uppower.sevenlion.common.utils.CommonResult;
+import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
 import org.uppower.sevenlion.web.product.common.model.result.ProductResult;
-import org.uppower.sevenlion.web.product.common.model.vo.ProductOrderVo;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class ProductFeignFallbackService implements ProductFeignClient {
     }
 
     @Override
-    public CommonResult cutProductStock(List<ProductOrderVo> productOrders) {
+    public CommonResult cutProductStock(List<ProductOrderBo> productOrders) {
         return null;
     }
 }

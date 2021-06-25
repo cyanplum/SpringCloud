@@ -20,8 +20,8 @@ import org.uppower.sevenlion.web.order.common.utils.TradeOrderNoGenerator;
 import org.uppower.sevenlion.web.order.dao.AliPayLogMapper;
 import org.uppower.sevenlion.web.order.dao.OrderMapper;
 import org.uppower.sevenlion.web.product.common.client.ProductFeignClient;
+import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
 import org.uppower.sevenlion.web.product.common.model.result.ProductResult;
-import org.uppower.sevenlion.web.product.common.model.vo.ProductOrderVo;
 
 
 import java.util.*;
@@ -76,7 +76,7 @@ public class OrderManageService {
         //得到商品信息
         CommonResult<List<ProductResult>> productList = productFeignClient.getProductList(vo.getProductOrders()
                         .stream()
-                        .map(ProductOrderVo::getProductId)
+                        .map(ProductOrderBo::getProductId)
                         .collect(Collectors.toList()),
                 null);
         if (!productList.isSuccess() && productList.getData().isEmpty()) {
@@ -112,7 +112,7 @@ public class OrderManageService {
                 throw new RuntimeException("库存查询失败！");
             }
             //2.扣库存
-            List<ProductOrderVo> productOrders = vo.getProductOrders();
+            List<ProductOrderBo> productOrders = vo.getProductOrders();
             CommonResult commonResult = productFeignClient.cutProductStock(productOrders);
             if (!commonResult.isSuccess()) {
                 throw new RuntimeException("扣减库存失败");

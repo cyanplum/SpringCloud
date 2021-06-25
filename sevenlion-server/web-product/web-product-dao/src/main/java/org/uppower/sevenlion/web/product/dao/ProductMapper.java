@@ -5,7 +5,7 @@ package org.uppower.sevenlion.web.product.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.uppower.sevenlion.web.product.common.model.entity.ProductEntity;
-import org.uppower.sevenlion.web.product.common.model.vo.ProductOrderVo;
+import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
 
 
 import java.util.List;
@@ -21,6 +21,6 @@ import java.util.List;
  */
 public interface ProductMapper extends BaseMapper<ProductEntity> {
 
-    int cutProductStock(@Param("productOrderList") List<ProductOrderVo> productOrderList);
+    int cutProductStock(@Param("productOrderList") List<ProductOrderBo> productOrderList);
 
 }

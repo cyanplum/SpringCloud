@@ -1,5 +1,6 @@
 package org.uppower.sevenlion.back.user.dao.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.uppower.sevenlion.back.user.dao.entity.UserEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<UserEntity> {
 
+    int updateStatus(@Param("id") Long id, @Param("status") Integer status);
 }

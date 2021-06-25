@@ -1,9 +1,5 @@
-package org.uppower.sevenlion.back.system.server.model.result;
+package org.uppower.sevenlion.back.system.server.model.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,7 +18,7 @@ import java.time.LocalDateTime;
  */
 @ApiModel("地区列表返回参数集")
 @Data
-public class DistrictListResult {
+public class DistrictListVo {
 
     @ApiModelProperty(value = "主键id")
     private Long id;

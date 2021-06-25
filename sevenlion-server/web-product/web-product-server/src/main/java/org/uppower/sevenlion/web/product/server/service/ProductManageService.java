@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.uppower.sevenlion.common.utils.CommonResult;
+import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
 import org.uppower.sevenlion.web.product.common.model.entity.ProductEntity;
 import org.uppower.sevenlion.web.product.common.model.result.CartResult;
 import org.uppower.sevenlion.web.product.common.model.result.ProductResult;
-import org.uppower.sevenlion.web.product.common.model.vo.CartVo;
-import org.uppower.sevenlion.web.product.common.model.vo.ProductOrderVo;
+import org.uppower.sevenlion.web.product.common.model.bo.CartBo;
 import org.uppower.sevenlion.web.product.dao.ProductMapper;
 
 
@@ -65,7 +65,7 @@ public class ProductManageService {
      * @param productOrderList
      * @return
      */
-    public CommonResult cutProductStock(List<ProductOrderVo> productOrderList) {
+    public CommonResult cutProductStock(List<ProductOrderBo> productOrderList) {
         if (productMapper.cutProductStock(productOrderList) != productOrderList.size()) {
             return CommonResult.failed("");
         }
@@ -79,17 +79,17 @@ public class ProductManageService {
         return CommonResult.success(list);
     }
 
-    public CommonResult storeCart(CartVo vo) {
-        ProductEntity productEntity = productMapper.selectById(vo.getProductId());
+    public CommonResult storeCart(CartBo bo) {
+        ProductEntity productEntity = productMapper.selectById(bo.getProductId());
         if (productEntity == null) {
             throw new RuntimeException("商品不存在！");
         }
         CartResult productRedis = new CartResult();
         BeanUtils.copyProperties(productEntity,productRedis);
-        productRedis.setId(vo.getProductId());
-        productRedis.setNumber(vo.getNumber());
+        productRedis.setId(bo.getProductId());
+        productRedis.setNumber(bo.getNumber());
         try {
-            redisTemplate.opsForHash().put(vo.getId().toString(),productEntity.getId().toString(),productRedis);
+            redisTemplate.opsForHash().put(bo.getId().toString(),productEntity.getId().toString(),productRedis);
         } catch (Exception e) {
 
         }

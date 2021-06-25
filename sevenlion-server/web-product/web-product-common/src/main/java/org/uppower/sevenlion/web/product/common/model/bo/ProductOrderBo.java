@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.web.product.common.model.vo;
+package org.uppower.sevenlion.web.product.common.model.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductOrderVo implements Serializable {
+public class ProductOrderBo implements Serializable {
 
     private Long productId;
 

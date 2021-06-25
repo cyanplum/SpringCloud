@@ -25,6 +25,7 @@
         <module>web-forum</module>
         <module>back-user</module>
         <module>back-system</module>
+        <module>back-product</module>
     </modules>
 
     <packaging>pom</packaging>

@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.back.system.server.model.vo;
+package org.uppower.sevenlion.back.system.server.model.bo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
  */
 @ApiModel("地区新增对象参数集")
 @Data
-public class DistrictUpdateVO {
+public class DistrictSaveBo {
 
     @ApiModelProperty(value = "地区code")
     @NotBlank(message = "不能为空")

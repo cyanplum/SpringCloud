@@ -3,7 +3,7 @@ package org.uppower.sevenlion.web.order.common.client;//package org.uppower.alib
 //import org.springframework.stereotype.Component;
 //import org.springframework.stereotype.Service;
 //import org.uppower.alibaba_demo.order.common.model.result.ProductResult;
-//import org.uppower.alibaba_demo.order.common.model.vo.ProductOrderVo;
+//import org.uppower.alibaba_demo.order.common.model.vo.ProductOrderBo;
 //import org.uppower.alibaba_demo.order.common.utils.CommonResult;
 //
 //import java.util.List;
@@ -27,7 +27,7 @@ package org.uppower.sevenlion.web.order.common.client;//package org.uppower.alib
 //    }
 //
 //    @Override
-//    public CommonResult cutProductStock(List<ProductOrderVo> productOrders) {
+//    public CommonResult cutProductStock(List<ProductOrderBo> productOrders) {
 //        return null;
 //    }
 //}

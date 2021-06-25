@@ -6,7 +6,7 @@ package org.uppower.sevenlion.web.order.common.client;//package org.uppower.alib
 //import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RequestParam;
 //import org.uppower.alibaba_demo.order.common.model.result.ProductResult;
-//import org.uppower.alibaba_demo.order.common.model.vo.ProductOrderVo;
+//import org.uppower.alibaba_demo.order.common.model.vo.ProductOrderBo;
 //import org.uppower.alibaba_demo.order.common.utils.CommonResult;
 //
 //import java.util.List;
@@ -39,5 +39,5 @@ package org.uppower.sevenlion.web.order.common.client;//package org.uppower.alib
 //     * @return
 //     */
 //    @PostMapping("/product/cutProductStock")
-//    public CommonResult cutProductStock(@RequestBody List<ProductOrderVo> productOrders);
+//    public CommonResult cutProductStock(@RequestBody List<ProductOrderBo> productOrders);
 //}

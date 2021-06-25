@@ -1,5 +1,5 @@
 server:
-  port: 8700
+  port: 7070
 spring:
   application:
     name: sevenlion-back-user

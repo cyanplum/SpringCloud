@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.web.product.common.model.result.ProductResult;
-import org.uppower.sevenlion.web.product.common.model.vo.ProductOrderVo;
+import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
 
 
 import java.util.List;
@@ -40,5 +40,5 @@ public interface ProductFeignClient {
      * @return
      */
     @PostMapping("/product/cutProductStock")
-    public CommonResult cutProductStock(@RequestBody List<ProductOrderVo> productOrders);
+    public CommonResult cutProductStock(@RequestBody List<ProductOrderBo> productOrders);
 }
