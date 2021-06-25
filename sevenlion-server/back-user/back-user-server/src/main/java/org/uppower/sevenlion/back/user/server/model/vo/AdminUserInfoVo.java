@@ -1,6 +1,5 @@
-package org.uppower.sevenlion.back.user.server.model.result;
+package org.uppower.sevenlion.back.user.server.model.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,7 +18,7 @@ import java.time.LocalDateTime;
  */
 @ApiModel("管理用户详情返回集")
 @Data
-public class AdminUserInfoResult {
+public class AdminUserInfoVo {
 
     @ApiModelProperty(value = "id")
     private Long id;

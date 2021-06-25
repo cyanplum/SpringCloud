@@ -1,11 +1,9 @@
 package org.uppower.sevenlion.back.user.server.model.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 /**
@@ -16,25 +14,24 @@ import java.util.List;
  * *  | | | |     / / |__/ | |    | | /  | / /
  * * | |_| |_    / /       | |   | |/   |/ /
  * * \_______|  /_/        |_|  |___/|___/
- * @date 2021/5/26 2:32 下午
+ * @date 2021/5/26 1:55 下午
  */
-@ApiModel("角色新增对象参数集")
+@ApiModel("角色详情返回集")
 @Data
-public class RoleSaveVO {
+public class RoleInfoVo {
+
+    @ApiModelProperty(value = "主键")
+    private Long id;
 
     @ApiModelProperty(value = "角色标签")
-    @NotBlank(message = "角色标签不能为空")
     private String label;
 
     @ApiModelProperty(value = "角色名")
-    @NotBlank(message = "角色名不能为空")
     private String name;
 
     @ApiModelProperty(value = "角色介绍")
-    @NotBlank(message = "角色介绍不能为空")
     private String description;
 
-    @ApiModelProperty(value = "角色权限列表id")
-    private List<Long> permissionIdList;
-
+    @ApiModelProperty(value = "权限列表")
+    private List<PermissionInfoVo> permissionInfoResultList;
 }

@@ -1,14 +1,11 @@
-package org.uppower.sevenlion.back.user.server.model.result;
+package org.uppower.sevenlion.back.user.server.model.bo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author create by:
@@ -18,52 +15,42 @@ import java.time.LocalDateTime;
  * *  | | | |     / / |__/ | |    | | /  | / /
  * * | |_| |_    / /       | |   | |/   |/ /
  * * \_______|  /_/        |_|  |___/|___/
- * @date 2021/5/26 3:41 下午
+ * @date 2021/5/26 4:05 下午
  */
-@ApiModel("管理用户列表返回集")
+@ApiModel("新增管理用户对象参数集")
 @Data
-public class AdminUserListResult {
-
-    @ApiModelProperty(value = "id")
-    private Long id;
+public class AdminUserSaveBo {
 
     @ApiModelProperty(value = "用户电话")
+    @NotBlank(message = "用户电话不能为空")
     private String phone;
 
     @ApiModelProperty(value = "用户名")
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     @ApiModelProperty(value = "用户email")
+    @NotBlank(message = "用户email不能为空")
     private String email;
 
-    @ApiModelProperty(value = "上级id")
-    private Long superId;
-
-    @ApiModelProperty(value = "上级名称")
-    private String superName;
-
     @ApiModelProperty(value = "用户角色")
+    @NotNull(message = "用户角色不能为空")
     private Integer roleId;
 
     @ApiModelProperty(value = "省id")
+    @NotNull(message = "省不能为空")
     private Long provinceId;
 
     @ApiModelProperty(value = "市id")
+    @NotNull(message = "市不能为空")
     private Long cityId;
 
     @ApiModelProperty(value = "区、县id")
+    @NotNull(message = "区、县不能为空")
     private Long districtId;
 
-    @ApiModelProperty(value = "地区")
-    private String address;
-
     @ApiModelProperty(value = "用户状态")
+    @NotNull(message = "用户状态不能为空")
     private Integer status;
-
-    @ApiModelProperty(value = "用户状态名称")
-    private String statusName;
-
-    @ApiModelProperty(value = "创建时间")
-    private LocalDateTime createTime;
 
 }

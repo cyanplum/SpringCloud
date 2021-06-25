@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.back.user.server.model.result;
+package org.uppower.sevenlion.back.user.server.model.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,7 +16,7 @@ import lombok.Data;
  */
 @ApiModel("权限详情返回集")
 @Data
-public class PermissionInfoResult {
+public class PermissionInfoVo {
 
     @ApiModelProperty(value = "权限id")
     private Long id;

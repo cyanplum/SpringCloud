@@ -1,5 +1,4 @@
-package org.uppower.sevenlion.back.user.server.model.result;
-
+package org.uppower.sevenlion.back.user.server.model.query;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -13,18 +12,19 @@ import lombok.Data;
  * *  | | | |     / / |__/ | |    | | /  | / /
  * * | |_| |_    / /       | |   | |/   |/ /
  * * \_______|  /_/        |_|  |___/|___/
- * @date 2021/5/26 12:37 下午
+ * @date 2021/6/25 4:44 下午
  */
-@ApiModel("权限列表返回集")
 @Data
-public class RoleListResult {
+@ApiModel("权限查询参数集合")
+public class PermissionQueryModel {
 
-    @ApiModelProperty(value = "id")
-    private Long id;
+    @ApiModelProperty(name = "pn", value = "页码")
+    private Integer pn = 1;
 
-    @ApiModelProperty(value = "角色标签")
-    private String label;
+    @ApiModelProperty(name = "pageSize", value = "页大小")
+    private Integer pageSize = 15;
 
-    @ApiModelProperty(value = "角色名")
+
+    @ApiModelProperty(name = "name",value = "地区名称")
     private String name;
 }

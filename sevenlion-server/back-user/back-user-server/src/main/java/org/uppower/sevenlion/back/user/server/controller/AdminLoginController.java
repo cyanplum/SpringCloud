@@ -14,7 +14,7 @@ import org.uppower.sevenlion.back.user.dao.mapper.AdminPermissionMapper;
 import org.uppower.sevenlion.back.user.dao.mapper.AdminRoleMapper;
 import org.uppower.sevenlion.back.user.dao.mapper.AdminRolePermissionMapper;
 import org.uppower.sevenlion.back.user.dao.mapper.AdminUserMapper;
-import org.uppower.sevenlion.back.user.server.model.vo.AdminLoginVO;
+import org.uppower.sevenlion.back.user.server.model.bo.AdminLoginBo;
 import org.uppower.sevenlion.common.enums.BaseStatusEnum;
 import org.uppower.sevenlion.common.exceptions.BackException;
 import org.uppower.sevenlion.security.annotation.LoginMapping;
@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
  */
 @Api(tags = "管理用户登录")
 @LoginMapping("/auth/login")
-public class AdminLoginController implements AuthenticationService<AdminLoginVO> {
+public class AdminLoginController implements AuthenticationService<AdminLoginBo> {
 
     @Autowired
     private AdminUserMapper adminUserMapper;
@@ -54,8 +54,8 @@ public class AdminLoginController implements AuthenticationService<AdminLoginVO>
 
     @ApiOperation("管理用户登录")
     @Override
-    public UserDetails loadUser(@ApiParam("登录参数") AdminLoginVO body, PasswordEncoder passwordEncoder) {
-        AdminUserEntity adminUserEntity = adminUserMapper.selectOne(new QueryWrapper<AdminUserEntity>().eq("phone", body.getPhone()));
+    public UserDetails loadUser(@ApiParam("登录参数") AdminLoginBo body, PasswordEncoder passwordEncoder) {
+        AdminUserEntity adminUserEntity = adminUserMapper.selectOne(new QueryWrapper<AdminUserEntity>().lambda().eq(AdminUserEntity::getPhone, body.getPhone()));
         if (adminUserEntity == null) {
             throw new BackException("用户不存在！");
         }
@@ -71,15 +71,15 @@ public class AdminLoginController implements AuthenticationService<AdminLoginVO>
         }
         //查询角色拥有的权限id
         List<AdminRolePermissionEntity> adminRolePermissionEntityList = adminRolePermissionMapper.selectList(new QueryWrapper<AdminRolePermissionEntity>()
-                .eq("role_id", adminRoleEntity.getId()));
+                .lambda().eq(AdminRolePermissionEntity::getRoleId, adminRoleEntity.getId()));
         if (adminRolePermissionEntityList.isEmpty()) {
             throw new BackException("角色无权限！");
         }
         List<AdminPermissionEntity> adminPermissionEntityList = adminPermissionMapper.selectList(new QueryWrapper<AdminPermissionEntity>()
-                .in("id", adminRolePermissionEntityList.stream().map(it -> it.getPermissionId()).collect(Collectors.toList())));
+                .lambda().in(AdminPermissionEntity::getId, adminRolePermissionEntityList.stream().map(AdminRolePermissionEntity::getPermissionId).collect(Collectors.toList())));
 
         List<String> userRoles = new ArrayList<>();
-        List<String> permissions = adminPermissionEntityList.stream().map(it -> it.getLabel()).collect(Collectors.toList());
+        List<String> permissions = adminPermissionEntityList.stream().map(AdminPermissionEntity::getLabel).collect(Collectors.toList());
 
         userRoles.add(adminRoleEntity.getName());
 

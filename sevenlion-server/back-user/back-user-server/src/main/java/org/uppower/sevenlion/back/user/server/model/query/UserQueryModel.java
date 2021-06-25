@@ -1,10 +1,8 @@
-package org.uppower.sevenlion.back.system.server.model.query;
+package org.uppower.sevenlion.back.user.server.model.query;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import io.swagger.annotations.ApiParam;
 import lombok.Data;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author create by:
@@ -14,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
  * *  | | | |     / / |__/ | |    | | /  | / /
  * * | |_| |_    / /       | |   | |/   |/ /
  * * \_______|  /_/        |_|  |___/|___/
- * @date 2021/6/25 4:06 下午
+ * @date 2021/6/25 5:37 下午
  */
 @Data
-@ApiModel("地区查询参数")
-public class DistrictQueryModel {
+@ApiModel("前台用户参数集")
+public class UserQueryModel {
 
     @ApiModelProperty(name = "pn", value = "页码")
     private Integer pn = 1;
@@ -26,9 +24,9 @@ public class DistrictQueryModel {
     @ApiModelProperty(name = "pageSize", value = "页大小")
     private Integer pageSize = 15;
 
-    @ApiModelProperty(name = "level", value = "地区级别")
-    private Integer level;
-
-    @ApiModelProperty(name = "name",value = "地区名称")
+    @ApiModelProperty(name = "name",value = "用户名")
     private String name;
+
+    @ApiModelProperty(name = "phone",value = "电话号码")
+    private String phone;
 }

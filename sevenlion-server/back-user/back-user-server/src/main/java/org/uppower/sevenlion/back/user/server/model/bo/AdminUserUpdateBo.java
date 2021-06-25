@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.back.user.server.model.vo;
+package org.uppower.sevenlion.back.user.server.model.bo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
  */
 @ApiModel("修改管理用户对象参数集")
 @Data
-public class AdminUserUpdateVO {
+public class AdminUserUpdateBo {
 
     @ApiModelProperty(value = "用户电话")
     @NotBlank(message = "用户电话不能为空")

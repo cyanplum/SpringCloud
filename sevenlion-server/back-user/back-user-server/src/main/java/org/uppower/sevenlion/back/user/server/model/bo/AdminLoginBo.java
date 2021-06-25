@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.back.user.server.model.vo;
+package org.uppower.sevenlion.back.user.server.model.bo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -19,7 +19,7 @@ import javax.validation.constraints.NotBlank;
  */
 @Data
 @ApiModel("用户登录参数")
-public class AdminLoginVO implements ImageValidateCodeBean {
+public class AdminLoginBo implements ImageValidateCodeBean {
 
     @ApiModelProperty("电话号码")
     @NotBlank(message = "电话号码不能为空")

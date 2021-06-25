@@ -1,10 +1,8 @@
-package org.uppower.sevenlion.back.user.server.model.result;
+package org.uppower.sevenlion.back.user.server.model.vo;
 
-import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.uppower.sevenlion.back.user.dao.entity.UserAddressEntity;
 import org.uppower.sevenlion.oss.common.model.result.FileInfoResult;
 
 import java.math.BigDecimal;
@@ -22,7 +20,7 @@ import java.time.LocalDateTime;
  */
 @ApiModel("用户列表返回集")
 @Data
-public class UserInfoResult {
+public class UserInfoVo {
 
     @ApiModelProperty(value = "主键id")
     private Long id;

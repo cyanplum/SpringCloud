@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.back.user.server.model.result;
+package org.uppower.sevenlion.back.user.server.model.vo;
 
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
@@ -15,5 +15,5 @@ import lombok.Data;
  */
 @ApiModel("用户地址")
 @Data
-public class UserAddressInfoResult {
+public class UserAddressInfoVo {
 }
