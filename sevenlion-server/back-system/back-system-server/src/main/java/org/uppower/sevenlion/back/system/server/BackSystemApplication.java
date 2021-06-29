@@ -1,6 +1,5 @@
 package org.uppower.sevenlion.back.system.server;
 
-import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.uppower.sevenlion.security.annotation.EnableSevenlionSecurity;
@@ -17,7 +16,6 @@ import org.uppower.sevenlion.security.annotation.EnableSevenlionSecurity;
  */
 @SpringBootApplication
 @EnableSevenlionSecurity
-@EnableDubbo
 public class BackSystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(BackSystemApplication.class,args);

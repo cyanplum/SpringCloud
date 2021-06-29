@@ -71,7 +71,7 @@ public class PermissionManagerController{
     }
 
     @ApiOperation("删除角色")
-    @DeleteMapping("/role/{id}")
+    @DeleteMapping("/role/{id:.+}")
     public CommonResult deleteRole(@ApiIgnore AdminInfo adminInfo,
                                    @ApiParam("角色id") @PathVariable Long id) {
         permissionManageService.deleteRole(adminInfo, id);

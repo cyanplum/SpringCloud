@@ -2,11 +2,10 @@ package org.uppower.sevenlion.back.system.server.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.uppower.sevenlion.back.system.common.api.DistrictServiceApi;
 import org.uppower.sevenlion.back.system.dao.entity.DistrictsEntity;
@@ -36,7 +35,6 @@ import java.util.stream.Collectors;
  * * \_______|  /_/        |_|  |___/|___/
  * @date 2021/5/27 1:45 下午
  */
-@Component
 @Service
 public class DistrictManageService implements DistrictServiceApi {
 

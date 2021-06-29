@@ -2,14 +2,10 @@ package org.uppower.sevenlion.back.user.server.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.uppower.sevenlion.back.system.common.api.DistrictServiceApi;
 import org.uppower.sevenlion.back.user.dao.entity.AdminUserEntity;
 import org.uppower.sevenlion.back.user.dao.entity.UserEntity;
 import org.uppower.sevenlion.back.user.dao.entity.UserInfoEntity;
@@ -57,9 +53,6 @@ public class UserManageService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Reference(check = false,stub = "org.uppower.sevenlion.back.user.server.api.DistrictServiceApiStub")
-    private DistrictServiceApi districtServiceApi;
 
     @Autowired
     private UserMapper userMapper;
@@ -109,8 +102,9 @@ public class UserManageService {
         BeanUtils.copyProperties(adminUserEntity,result);
         result.setStatusName(BaseStatusEnum.msgByStatus(adminUserEntity.getStatus()));
         result.setSuperName(adminInfo.getUsername());
-        String address = districtServiceApi.selectAddressById(result.getDistrictId());
-        result.setAddress(address);
+        // TODO: 2021/6/29 地址
+        //String address = districtServiceApi.selectAddressById(result.getDistrictId());
+        //result.setAddress(address);
         return result;
     }
 
