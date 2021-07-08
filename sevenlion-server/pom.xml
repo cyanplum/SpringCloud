@@ -19,13 +19,12 @@
         <module>security</module>
         <module>common</module>
         <module>oss</module>
-        <module>web-product</module>
-        <module>web-order</module>
-        <module>web-user</module>
-        <module>web-forum</module>
-        <module>back-user</module>
-        <module>back-system</module>
-        <module>back-product</module>
+        <module>web-pms</module>
+        <module>web-oms</module>
+        <module>web-ums</module>
+        <module>web-fms</module>
+        <module>web-cms</module>
+        <module>back-server</module>
     </modules>
 
     <packaging>pom</packaging>

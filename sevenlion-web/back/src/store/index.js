@@ -10,8 +10,8 @@ export default new Vuex.Store({
     // 私有属性
     token: sessionStorage.getItem('token'),
     // userInfo: JSON.parse(sessionStorage.getItem('userInfo'))
-    userInfo: JSON.parse(sessionStorage.getItem('userInfo')),
-    menus:JSON.parse(sessionStorage.getItem('menus')),
+    userInfo: JSON.parse(sessionStorage.getItem('additionalInfo')),
+    menus:JSON.parse(sessionStorage.getItem("menus")),
     url: "http://localhost:7070"
   },
   mutations: {

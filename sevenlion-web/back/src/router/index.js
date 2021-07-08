@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/views/Login'
+import Index from '@/views/Index'
 import Store from '../store/index'
 Vue.use(Router)
 
@@ -9,14 +10,20 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      redirect: {name: 'index'}
     },
     {
       path: '/login',
       name: 'login',
       component: Login
-    }
+    },
+    {
+      path: '/index',
+      name: 'index',
+      component: Index,
+      children:[
+      ]
+    },
   ],
   mode: 'history'
 })
@@ -29,10 +36,6 @@ router.beforeEach((to, from, next) => {
   }
   const token = Store.getters.getToken
   //如果没有token进行跳转到/login
-  console.log("x-="+ to.path)
-  console.log("x-="+ token == '' )
-  console.log("x-="+ token)
-  console.log("x-="+ token =='null' )
   if (token == null) {
     return next('/login')
   }

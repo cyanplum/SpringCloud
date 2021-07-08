@@ -60,8 +60,10 @@ export default {
             if (res.data.success) {
               // 保存token到全局变量
               const token = res.data.data.token
-              const userInfo = res.data.data
-              const menus = res.data.data.menus
+              const userInfo = res.data.data.additionalInfo
+              console.log(userInfo)
+              console.log(userInfo.menus)
+              const menus = userInfo.menus
               _this.$store.commit("SET_TOKEN",token)
               _this.$store.commit("SET_USERINFO",userInfo)
               _this.$store.commit('SET_MENUS',menus)

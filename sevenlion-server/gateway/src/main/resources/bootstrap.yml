@@ -14,36 +14,54 @@ spring:
         group: gateway
     gateway:
       routes:
-        - id: sevenlion-web-order
-          uri: lb://sevenlion-web-order
+        - id: sevenlion-web-cms
+          uri: lb://sevenlion-web-cms
           filters:
             - StripPrefix=2
           predicates:
-            - Path=/web/order/**
-        - id: sevenlion-web-product
-          uri: lb://sevenlion-web-product
+            - Path=/web/cms/**
+        - id: sevenlion-web-fms
+          uri: lb://sevenlion-web-fms
           filters:
             - StripPrefix=2
           predicates:
-            - Path=/web/product/**
-        - id: sevenlion-web-user
-          uri: lb://sevenlion-web-user
+            - Path=/web/fms/**
+        - id: sevenlion-web-oms
+          uri: lb://sevenlion-web-oms
           filters:
             - StripPrefix=2
           predicates:
-            - Path=/web/user/**
-        - id: sevenlion-back-user
-          uri: lb://sevenlion-back-user
+            - Path=/web/oms/**
+        - id: sevenlion-web-pms
+          uri: lb://sevenlion-web-pms
           filters:
             - StripPrefix=2
           predicates:
-            - Path=/back/user/**
-        - id: sevenlion-back-system
-          uri: lb://sevenlion-back-system
+            - Path=/web/pms/**
+        - id: sevenlion-web-ums
+        uri: lb://sevenlion-web-ums
+        filters:
+          - StripPrefix=2
+        predicates:
+          - Path=/web/ums/**
+        - id: sevenlion-back-pms
+          uri: lb://sevenlion-back-pms
           filters:
             - StripPrefix=2
           predicates:
-            - Path=/back/system/**
+            - Path=/back/pms/**
+        - id: sevenlion-back-sms
+          uri: lb://sevenlion-back-sms
+          filters:
+            - StripPrefix=2
+          predicates:
+            - Path=/back/sms/**
+        - id: sevenlion-back-ums
+          uri: lb://sevenlion-back-ums
+          filters:
+            - StripPrefix=2
+          predicates:
+            - Path=/back/ums/**
 #      discovery:
 #        locator:
 #          # 是否与服务发现组件进行结合，通过 serviceId 转发到具体的服务实例。默认为false

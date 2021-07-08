@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.uppower.sevenlion.back.server.mapper.DistrictsMapper">
+
+    <update id="updateStatus">
+        UPDATE
+            districts
+        SET
+            `status` = #{status}
+        WHERE
+            `deleted` = 0
+            <if test="id != null">
+                AND `id` = #{id}
+            </if>
+            <if test="pIds != null and pIds.size() != 0">
+                AND `p_id` IN
+                <foreach collection="pIds" item="item" separator="," open="(" close=")">
+                    #{item}
+                </foreach>
+            </if>
+    </update>
+
+    <select id="selectAllNameById" resultType="java.lang.String">
+        SELECT
+	        CONCAT(IFNULL(c.`name`,""),IFNULL(b.`name`,""), a. `name`)
+        FROM
+	        districts AS a
+	        LEFT JOIN districts AS b ON a.p_id = b.id
+	        LEFT JOIN districts AS c ON b.p_id = c.id
+        WHERE
+	        a.id = #{id};
+    </select>
+</mapper>

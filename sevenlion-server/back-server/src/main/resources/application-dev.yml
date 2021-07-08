@@ -1,0 +1,31 @@
+spring:
+  redis:
+    port: 63779
+    host: 47.115.130.89
+    password: Sevenlion7
+  datasource:
+    url: jdbc:mysql://rm-wz9g7s1hz6b7jw0nq3o.mysql.rds.aliyuncs.com:3306/sevenlion_cloud?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
+    username: sevenlion
+    password: Sevenlion7
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 5
+      min-idle: 10
+      max-active: 100
+      max-wait: 60000
+      filters: stat,wall,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: sevenlion
+#    password: sevenlion
+#    virtual-host: /
+#feign:
+#  sentinel:
+#    enabled: true
+sevenlion:
+  security:
+    name: back
+    injectClass: org.uppower.sevenlion.common.model.admin.AdminInfo
+    accessTokenExpireIn: 720000
