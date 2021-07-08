@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.web.user.server.config;
+package org.uppower.sevenlion.web.ums.server.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

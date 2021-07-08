@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.web.user.server.controller;
+package org.uppower.sevenlion.web.ums.server.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.uppower.sevenlion.common.model.user.UserInfo;
 import org.uppower.sevenlion.common.utils.CommonResult;
-import org.uppower.sevenlion.web.user.server.service.UserManageService;
+import org.uppower.sevenlion.web.ums.server.service.UserManageService;
 
 /**
  * @author create by:

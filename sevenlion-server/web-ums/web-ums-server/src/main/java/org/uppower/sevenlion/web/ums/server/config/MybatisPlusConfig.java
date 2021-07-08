@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.web.user.server.config;
+package org.uppower.sevenlion.web.ums.server.config;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;

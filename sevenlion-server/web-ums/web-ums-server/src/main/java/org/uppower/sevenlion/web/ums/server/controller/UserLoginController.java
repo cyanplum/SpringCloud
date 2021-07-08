@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.web.user.server.controller;
+package org.uppower.sevenlion.web.ums.server.controller;
 
 import io.swagger.annotations.Api;
 import org.springframework.security.crypto.password.PasswordEncoder;

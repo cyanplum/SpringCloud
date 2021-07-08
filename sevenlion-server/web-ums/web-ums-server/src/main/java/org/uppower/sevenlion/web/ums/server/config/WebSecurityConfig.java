@@ -1,4 +1,4 @@
-package org.uppower.sevenlion.web.user.server.config;
+package org.uppower.sevenlion.web.ums.server.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.uppower.sevenlion.security.common.UrlMatcherRegistry;
