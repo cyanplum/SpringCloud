@@ -10,11 +10,11 @@ package cn.sevenlion.utils.enums;
  * * \_______|  /_/        |_|  |___/|___/
  * @date 2021/7/21 11:38 上午
  */
-public enum TableFieldEnum {
+public enum ColumnFieldEnum {
     IMAGE("图片");
     private String name;
 
-    TableFieldEnum(String name) {
+    ColumnFieldEnum(String name) {
         this.name = name;
     }
 

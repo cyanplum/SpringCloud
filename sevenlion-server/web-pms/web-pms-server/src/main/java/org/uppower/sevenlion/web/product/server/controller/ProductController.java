@@ -7,7 +7,7 @@ import org.uppower.sevenlion.web.product.common.model.result.CartResult;
 import org.uppower.sevenlion.web.product.common.model.result.ProductResult;
 import org.uppower.sevenlion.web.product.common.model.bo.CartBo;
 import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
-import org.uppower.sevenlion.web.product.server.service.ProductManageService;
+import org.uppower.sevenlion.web.product.server.service.ProductService;
 
 import java.util.List;
 
@@ -23,10 +23,10 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/product")
-public class ProductManageController {
+public class ProductController {
 
     @Autowired
-    private ProductManageService productManageService;
+    private ProductService productService;
 
     /**
      * 得到商品信息集合
@@ -37,22 +37,22 @@ public class ProductManageController {
 
     @GetMapping("/getProductList")
     public CommonResult<List<ProductResult>> getProductList(@RequestParam(value = "ids",required = false)List<Long> ids, @RequestParam(value = "name",required = false) String name) {
-        return productManageService.getProductList(ids,name);
+        return productService.getProductList(ids,name);
     }
 
     @PostMapping("/cutProductStock")
     public CommonResult cutProductStock(@RequestBody List<ProductOrderBo> productOrders) {
-        return productManageService.cutProductStock(productOrders);
+        return productService.cutProductStock(productOrders);
     }
 
     @GetMapping("/cart/{id}")
     public CommonResult<List<CartResult>> cartIndex(@PathVariable Long id) {
-        return productManageService.cartIndex(id);
+        return productService.cartIndex(id);
     }
 
 
     @PostMapping("/cart")
     public CommonResult storeCart(@RequestBody CartBo bo) {
-        return productManageService.storeCart(bo);
+        return productService.storeCart(bo);
     }
 }

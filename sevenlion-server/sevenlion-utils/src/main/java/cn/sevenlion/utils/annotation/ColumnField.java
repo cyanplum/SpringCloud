@@ -1,6 +1,6 @@
 package cn.sevenlion.utils.annotation;
 
-import cn.sevenlion.utils.enums.TableFieldEnum;
+import cn.sevenlion.utils.enums.ColumnFieldEnum;
 
 import java.lang.annotation.*;
 
@@ -17,7 +17,7 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface TableDeserialize {
+public @interface ColumnField {
 
-    TableFieldEnum type();
+    ColumnFieldEnum type();
 }

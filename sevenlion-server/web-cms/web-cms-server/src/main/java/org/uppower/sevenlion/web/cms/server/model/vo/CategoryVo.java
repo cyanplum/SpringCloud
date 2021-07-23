@@ -1,11 +1,10 @@
 package org.uppower.sevenlion.web.cms.server.model.vo;
 
-import cn.sevenlion.utils.annotation.TableDeserialize;
-import cn.sevenlion.utils.enums.TableFieldEnum;
+import cn.sevenlion.utils.annotation.ColumnField;
+import cn.sevenlion.utils.enums.ColumnFieldEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.uppower.sevenlion.oss.model.result.FileInfoResult;
 
 import java.io.Serializable;
 
@@ -36,7 +35,7 @@ public class CategoryVo implements Serializable {
     private String name;
 
     @ApiModelProperty(value = "图标")
-    @TableDeserialize(type = TableFieldEnum.IMAGE)
+    @ColumnField(type = ColumnFieldEnum.IMAGE)
     private String icon;
 
     @ApiModelProperty(value = "权重")

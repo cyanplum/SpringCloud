@@ -1,6 +1,6 @@
 package cn.sevenlion.utils.processor;
 
-import cn.sevenlion.utils.enums.TableFieldEnum;
+import cn.sevenlion.utils.enums.ColumnFieldEnum;
 
 /**
  * @author create by:
@@ -18,7 +18,7 @@ public interface TableFieldProcessor {
      * 得到字段的类型
      * @return
      */
-    TableFieldEnum getFieldType();
+    ColumnFieldEnum getFieldType();
 
     /**
      * 解析

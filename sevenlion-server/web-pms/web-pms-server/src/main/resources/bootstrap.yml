@@ -8,11 +8,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: localhost:8848
-    sentinel:
-      transport:
-        dashboard: localhost:8080
-        port: 8719
+        server-addr: 47.115.130.89:8848
 management:
   endpoints:
     web:

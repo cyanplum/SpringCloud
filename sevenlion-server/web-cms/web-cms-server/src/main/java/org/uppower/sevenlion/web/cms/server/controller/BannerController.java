@@ -1,14 +1,17 @@
 package org.uppower.sevenlion.web.cms.server.controller;
 
+import cn.sevenlion.utils.response.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.web.cms.server.model.query.BannerQueryModel;
+import org.uppower.sevenlion.web.cms.server.model.vo.BannerVo;
 import org.uppower.sevenlion.web.cms.server.service.BannerService;
+
+import java.util.List;
 
 /**
  * @author create by:
@@ -28,10 +31,9 @@ public class BannerController {
     @Autowired
     private BannerService bannerService;
 
-    @ApiOperation("查询banner")
+    @ApiOperation("查询banner列表")
     @GetMapping
-    public CommonResult index(BannerQueryModel queryModel) {
-        bannerService.index(queryModel);
-        return CommonResult.success();
+    public CommonResult<List<BannerVo>> index(BannerQueryModel queryModel) {
+        return CommonResult.success(bannerService.index(queryModel));
     }
 }

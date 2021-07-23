@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
  * @date 2021/4/22 11:26 上午
  */
 @Service
-public class ProductManageService {
+public class ProductService {
 
     @Autowired
     private ProductMapper productMapper;

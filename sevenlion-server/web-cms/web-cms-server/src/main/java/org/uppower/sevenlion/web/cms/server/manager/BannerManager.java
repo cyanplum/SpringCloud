@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.uppower.sevenlion.common.enums.BaseStatusEnum;
 import org.uppower.sevenlion.web.cms.common.model.entity.BannerEntity;
 import org.uppower.sevenlion.web.cms.dao.mapper.BannerMapper;
 import org.uppower.sevenlion.web.cms.server.model.query.BannerQueryModel;
@@ -38,6 +39,8 @@ public class BannerManager {
         if (ObjectUtil.isNull(queryModel.getDistrictId())) {
             queryWrapper.eq(BannerEntity::getDistrictId,queryModel.getDistrictId());
         }
+        queryWrapper.eq(BannerEntity::getStatus, BaseStatusEnum.ONLINE.getStatus());
+        queryWrapper.orderByDesc(BannerEntity::getWeight);
         List<BannerEntity> bannerEntities = bannerMapper.selectList(queryWrapper);
         return bannerEntities;
     }

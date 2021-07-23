@@ -5,6 +5,7 @@ import cn.sevenlion.utils.response.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,14 +34,19 @@ import static org.uppower.sevenlion.common.model.Const.BUCKET_NAME;
 @RequestMapping("/category")
 public class CategoryController {
 
-    @ApiOperation("查询类目列表")
-    @GetMapping
-    public CommonResult<List<CategoryVo>> selectCategory(CategoryQueryModel queryModel) {
-        List<CategoryVo> result = null;
-        if (ObjectUtil.isNotNull(queryModel.getType())) {
-            result = CategoryProvider.getCategoryByType(queryModel.getType());
-        }
-        return CommonResult.success(result);
+    @Autowired
+    private CategoryProvider categoryProvider;
+
+    @ApiOperation("根据类型查询类目列表")
+    @GetMapping("/type/{type:.+}")
+    public CommonResult<List<CategoryVo>> queryCategoryByType(@PathVariable Integer type) {
+        return CommonResult.success(categoryProvider.getCategoryByType(type));
+    }
+
+    @ApiOperation("根据父节点查询类目列表")
+    @GetMapping("/{id:.+}")
+    public CommonResult<List<CategoryVo>> queryCategoryByPId(@PathVariable Long id) {
+        return CommonResult.success(categoryProvider.getCategoryByPId(id));
     }
 
     @ApiOperation("文件上传")

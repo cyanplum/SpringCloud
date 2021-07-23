@@ -1,6 +1,6 @@
 package org.uppower.sevenlion.oss.processor;
 
-import cn.sevenlion.utils.enums.TableFieldEnum;
+import cn.sevenlion.utils.enums.ColumnFieldEnum;
 import cn.sevenlion.utils.processor.TableFieldProcessor;
 import cn.sevenlion.utils.provider.TableFieldProviderFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -18,8 +18,8 @@ import org.uppower.sevenlion.oss.utils.OssUtils;
  */
 public class ImageFieldProcessor implements TableFieldProcessor, InitializingBean {
     @Override
-    public TableFieldEnum getFieldType() {
-        return TableFieldEnum.IMAGE;
+    public ColumnFieldEnum getFieldType() {
+        return ColumnFieldEnum.IMAGE;
     }
 
     @Override

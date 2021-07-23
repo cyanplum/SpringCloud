@@ -1,27 +1,24 @@
 package org.uppower.sevenlion.web.cms.server.provider;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.ObjectUtil;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
-import lombok.SneakyThrows;
-import org.springframework.beans.factory.InitializingBean;
+import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.uppower.sevenlion.common.constant.RedisConst;
 import org.uppower.sevenlion.common.constant.SqlConst;
-import org.uppower.sevenlion.common.utils.SpringApplicationContext;
-import org.uppower.sevenlion.web.cms.server.metabase.MetabaseService;
+import org.uppower.sevenlion.web.cms.common.model.entity.CategoryEntity;
+import org.uppower.sevenlion.web.cms.dao.mapper.CustomBaseMapper;
 import org.uppower.sevenlion.web.cms.server.model.vo.CategoryVo;
-import org.uppower.sevenlion.web.cms.server.schedule.BaseSchedule;
 
-import javax.annotation.Resource;
-import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -35,71 +32,67 @@ import java.util.stream.Collectors;
  * @date 2021/7/9 3:23 下午
  */
 @Service
-public class CategoryProvider implements InitializingBean,Runnable {
+@Slf4j
+public class CategoryProvider {
 
-    private static Map<Integer, List<CategoryVo>> categoryVoMap = Maps.newHashMap();
-
-    @Resource(name = "mysqlMetabaseService")
-    private MetabaseService metabaseService;
-
-    @Resource(name = "redisMetabaseService")
-    private MetabaseService redisMetabaseService;
-
+    @Autowired
+    private CustomBaseMapper customBaseMapper;
 
     @Autowired
     private ObjectMapper objectMapper;
 
-    @SneakyThrows
-    @Override
-    public void run() {
-        categoryVoMap.clear();
-        String jsonStr = metabaseService.getStringCurrent(SqlConst.BASE_CATEGORY);
-        List<CategoryVo>  categoryVos = null;
-        try {
-            categoryVos = objectMapper.readValue(jsonStr,new TypeReference<List<CategoryVo>>(){});
-        } catch (IOException e) {
-            e.printStackTrace();
+    @Autowired
+    private RedisTemplate<String, Object> redisTemplate;
+
+
+    public List<CategoryEntity> queryList() {
+        List<CategoryEntity> values = (List<CategoryEntity>) (List<?>) redisTemplate.opsForHash().values(RedisConst.CATEGORY_LIST);
+        //查询redis，redis为空查数据库
+        if (CollUtil.isEmpty(values)) {
+            List<Object> objects = customBaseMapper.selectRawData(SqlConst.BASE_CATEGORY);
+            List<CategoryEntity> categoryEntityList = JSONArray.parseArray(JSON.toJSONString(objects),CategoryEntity.class);
+            if (CollUtil.isEmpty(categoryEntityList)) {
+                return Lists.newArrayList();
+            }
+            Map<String, CategoryEntity> map = categoryEntityList.stream().collect(Collectors.toMap(it->it.getId().toString(), Function.identity()));
+            //存入redis
+            redisTemplate.opsForHash().putAll(RedisConst.CATEGORY_LIST,map);
+            return categoryEntityList;
         }
-        if (CollUtil.isNotEmpty(categoryVos)) {
-            categoryVos.forEach(it->{
-                if (categoryVoMap.containsKey(it.getType())) {
-                    categoryVoMap.get(it.getType()).add(it);
-                }else {
-                    ArrayList<CategoryVo> tmp = new ArrayList<>();
-                    tmp.add(it);
-                    categoryVoMap.put(it.getType(),tmp);
-                }
-            });
-        }
-        //把mysql数据库中数据放入redis
-        for (Integer key : categoryVoMap.keySet()) {
-            redisMetabaseService.push(key.toString(),categoryVoMap.get(key));
-        }
+        return values;
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        BaseSchedule.register(this, 5, 30, TimeUnit.SECONDS);
-    }
-
-    public static List<CategoryVo> getCategoryByType(Integer type) {
-        MetabaseService redisMetabaseService = SpringApplicationContext.getBean("redisMetabaseService");
-        String strData = redisMetabaseService.getStringCurrent(type.toString());
-        if (ObjectUtil.isNull(strData)) {
-            return null;
+    public List<CategoryVo> getCategoryByType(Integer type) {
+        List<CategoryEntity> categoryEntityList = queryList();
+        if (CollUtil.isEmpty(categoryEntityList)) {
+            return Lists.newArrayList();
         }
-        ObjectMapper objectMapper = SpringApplicationContext.getBean(ObjectMapper.class);
-        List<CategoryVo>  categoryVos = null;
-        try {
-            categoryVos = objectMapper.readValue(strData,new TypeReference<List<CategoryVo>>(){});
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (CollUtil.isEmpty(categoryVos)) {
-            return null;
-        }
-        List<CategoryVo> result = categoryVos.stream().filter(it -> it.getSuperId() == 0L).collect(Collectors.toList());
+        List<CategoryVo> result = categoryEntityList
+                .stream()
+                .filter(it -> it.getType().equals(type) && it.getSuperId() == 0L)
+                .map(it->{
+                    CategoryVo categoryVo = new CategoryVo();
+                    BeanUtils.copyProperties(it,categoryVo);
+                    return categoryVo;
+                }).sorted((o1, o2) -> o2.getWeight() - o1.getWeight())
+                .collect(Collectors.toList());
         return result;
     }
 
+    public List<CategoryVo> getCategoryByPId(Long id) {
+        List<CategoryEntity> categoryEntityList = queryList();
+        if (CollUtil.isEmpty(categoryEntityList)) {
+            return Lists.newArrayList();
+        }
+        List<CategoryVo> result = categoryEntityList
+                .stream()
+                .filter(it -> it.getSuperId().equals(id))
+                .map(it->{
+                    CategoryVo categoryVo = new CategoryVo();
+                    BeanUtils.copyProperties(it,categoryVo);
+                    return categoryVo;
+                }).sorted((o1, o2) -> o2.getWeight() - o1.getWeight())
+                .collect(Collectors.toList());
+        return result;
+    }
 }

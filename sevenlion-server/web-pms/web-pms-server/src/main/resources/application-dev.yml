@@ -1,11 +1,13 @@
 spring:
   redis:
-    port: 6379
+    port: 63779
+    host: 47.115.130.89
+    password: Sevenlion7
   datasource:
-    url: jdbc:mysql://localhost:3306/flower?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:p6spy:mysql://rm-wz9g7s1hz6b7jw0nq3o.mysql.rds.aliyuncs.com:3306/sevenlion_cloud?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
+    username: sevenlion
+    password: Sevenlion7
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     druid:
       initial-size: 5
       min-idle: 10
@@ -13,12 +15,28 @@ spring:
       max-wait: 60000
       filters: stat,wall,slf4j
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: sevenlion
-    password: sevenlion
-    virtual-host: /
-feign:
-  sentinel:
-    enabled: true
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: sevenlion
+#    password: sevenlion
+#    virtual-host: /
+#feign:
+#  sentinel:
+#    enabled: true
+sevenlion:
+  security:
+    name: web
+    injectClass: org.uppower.sevenlion.common.model.user.UserInfo
+    accessTokenExpireIn: 720000
+  swagger:
+    scanUrl: org.uppower.sevenlion.web.pms.server.controller
+    enable: true
+    title: 前台pms
+    description: pms接口详情
+    version: 1.0
+oss:
+  minio: true
+  url: http://47.115.130.89:9000
+  accessKey: sevenlion
+  secretKey: Sevenlion7

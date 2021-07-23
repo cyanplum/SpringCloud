@@ -19,6 +19,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "org.uppower.sevenlion.web.**.common")
+@MapperScan("org.uppower.sevenlion.web.pms.dao")
 public class WebProductServerApplication {
     public static void main(String[] args) {
         SpringApplication.run(WebProductServerApplication.class,args);
