@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.uppower.sevenlion.security.annotation.EnableSevenlionSecurity;
+import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * @author create by:
@@ -17,6 +18,7 @@ import org.uppower.sevenlion.security.annotation.EnableSevenlionSecurity;
  */
 @SpringBootApplication
 @MapperScan("org.uppower.sevenlion.web.cms.dao")
+@EnableCaching
 @EnableSevenlionSecurity
 public class WebCmsServerApplication {
     public static void main(String[] args) {
