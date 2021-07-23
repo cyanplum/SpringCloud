@@ -38,8 +38,8 @@ import java.util.Scanner;
  */
 public class MybatisGeneratorUtil {
 
-    public static final String path = "/sevenlion-server/back-cms/back-cms-dao";
-    public static final String packageConfig = "org.uppower.sevenlion.back.cms.dao";
+    public static final String path = "/sevenlion-server/web-cms/web-cms-dao";
+    public static final String packageConfig = "org.uppower.sevenlion.web.cms.dao";
     public static final String modelConfig = "model";
     public static final String mapperConfig = "mapper";
     /**
@@ -78,10 +78,10 @@ public class MybatisGeneratorUtil {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/sevenlion_cloud?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&serverTimezone=Asia/Shanghai");
+        dsc.setUrl("jdbc:mysql://rm-wz9g7s1hz6b7jw0nq3o.mysql.rds.aliyuncs.com:3306/sevenlion_cloud?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&serverTimezone=Asia/Shanghai");
         dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername("root");
-        dsc.setPassword("123456");
+        dsc.setUsername("sevenlion");
+        dsc.setPassword("Sevenlion7");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -141,7 +141,7 @@ public class MybatisGeneratorUtil {
         strategy.setEntityBooleanColumnRemoveIsPrefix(true);
         strategy.setEntityBuilderModel(true);
         strategy.setRestControllerStyle(true);
-        strategy.setInclude("category");
+        strategy.setInclude("banner");
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
