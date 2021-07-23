@@ -4,6 +4,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -17,6 +18,7 @@ import java.util.Map;
  * * \_______|  /_/        |_|  |___/|___/
  * @date 2021/5/24 11:45 下午
  */
+@Component
 public class SpringApplicationContext implements ApplicationContextAware {
     private static ApplicationContext applicationContext;
 

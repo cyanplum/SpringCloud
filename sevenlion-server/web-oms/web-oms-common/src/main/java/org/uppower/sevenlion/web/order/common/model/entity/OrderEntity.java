@@ -9,6 +9,8 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.uppower.sevenlion.web.order.common.model.jsonobject.AddressJsonObject;
 import org.uppower.sevenlion.web.order.common.model.jsonobject.ProductSnapObject;
+import org.uppower.sevenlion.web.order.common.model.typehandler.AddressTypeHandler;
+import org.uppower.sevenlion.web.order.common.model.typehandler.ProductSnapTypeHandler;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -41,7 +43,7 @@ public class OrderEntity implements Serializable {
     @TableField("product_id")
     private Long productId;
 
-    @TableField(value = "snap_product_info",el = "snapProductInfo,typeHandler=org.uppower.common.typehandler.ProductSnapTypeHandler")
+    @TableField(value = "snap_product_info",typeHandler = ProductSnapTypeHandler.class)
     private ProductSnapObject snapProductInfo;
 
     @TableField("remark")
@@ -53,7 +55,7 @@ public class OrderEntity implements Serializable {
     @TableField("count")
     private Integer count;
 
-    @TableField(value = "address",el = "address,typeHandler=org.uppower.common.typehandler.AddressTypeHandler")
+    @TableField(value = "address",typeHandler = AddressTypeHandler.class)
     private AddressJsonObject address;
 
     @TableField("status")

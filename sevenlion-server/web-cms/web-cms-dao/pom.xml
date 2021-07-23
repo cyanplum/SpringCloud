@@ -17,6 +17,11 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.8.7</version>
+        </dependency>
+        <dependency>
             <groupId>org.uppower.sevenlion.cloud</groupId>
             <artifactId>web-cms-common</artifactId>
             <version>1.0-SNAPSHOT</version>

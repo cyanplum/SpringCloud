@@ -1,8 +1,8 @@
 package org.uppower.sevenlion.web.product.server.controller;
 
+import cn.sevenlion.utils.response.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.web.product.common.model.result.CartResult;
 import org.uppower.sevenlion.web.product.common.model.result.ProductResult;
 import org.uppower.sevenlion.web.product.common.model.bo.CartBo;

@@ -1,5 +1,6 @@
 package org.uppower.sevenlion.back.server.controller;
 
+import cn.sevenlion.utils.response.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,7 +16,6 @@ import org.uppower.sevenlion.back.server.model.vo.UserInfoVo;
 import org.uppower.sevenlion.back.server.model.vo.UserListVo;
 import org.uppower.sevenlion.back.server.service.UserManageService;
 import org.uppower.sevenlion.common.model.admin.AdminInfo;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.common.utils.PageInfo;
 import springfox.documentation.annotations.ApiIgnore;
 

@@ -1,5 +1,6 @@
 package org.uppower.sevenlion.web.order.server.service;
 
+import cn.sevenlion.utils.response.CommonResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.web.order.common.enums.PayStatusEnum;
 import org.uppower.sevenlion.web.order.common.model.entity.AlipayLogEntity;
 import org.uppower.sevenlion.web.order.common.model.entity.OrderEntity;

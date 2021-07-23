@@ -1,5 +1,6 @@
 package org.uppower.sevenlion.back.server.controller;
 
+import cn.sevenlion.utils.response.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -10,7 +11,6 @@ import org.uppower.sevenlion.back.server.model.query.DistrictQueryModel;
 import org.uppower.sevenlion.back.server.model.vo.DistrictInfoVo;
 import org.uppower.sevenlion.back.server.model.vo.DistrictListVo;
 import org.uppower.sevenlion.back.server.service.DistrictManageService;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.common.utils.PageInfo;
 
 import javax.validation.Valid;

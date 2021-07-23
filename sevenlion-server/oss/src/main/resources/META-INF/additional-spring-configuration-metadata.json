@@ -1,0 +1,24 @@
+{
+  "properties": [
+    {
+      "name": "minio",
+      "type": "java.lang.Boolean",
+      "description": "开启minio."
+    },
+    {
+      "name": "oss.url",
+      "type": "java.lang.String",
+      "description": "oss地址."
+    },
+    {
+      "name": "oss.accessKey",
+      "type": "java.lang.String",
+      "description": "访问的key."
+    },
+    {
+      "name": "oss.secretKey",
+      "type": "java.lang.String",
+      "description": "访问的秘钥."
+    }
+  ]
+}

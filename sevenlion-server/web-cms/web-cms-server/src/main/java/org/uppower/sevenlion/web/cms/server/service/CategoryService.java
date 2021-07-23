@@ -30,7 +30,7 @@ public class CategoryService {
      * @auther sevenlion
      */
     public PageInfo selectCategory(CategoryQueryModel queryModel) {
-        categoryManager.selectCategory(queryModel.getId(), queryModel.getType());
+
         return null;
     }
 }

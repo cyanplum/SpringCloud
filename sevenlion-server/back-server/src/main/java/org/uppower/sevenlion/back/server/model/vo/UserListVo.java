@@ -3,7 +3,7 @@ package org.uppower.sevenlion.back.server.model.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.uppower.sevenlion.oss.common.model.result.FileInfoResult;
+import org.uppower.sevenlion.oss.model.result.FileInfoResult;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

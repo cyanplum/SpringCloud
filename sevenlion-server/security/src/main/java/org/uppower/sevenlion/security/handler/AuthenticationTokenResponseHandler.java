@@ -1,7 +1,7 @@
 package org.uppower.sevenlion.security.handler;
 
 
-import org.uppower.sevenlion.security.common.CommonResult;
+import cn.sevenlion.utils.response.CommonResult;
 import org.uppower.sevenlion.security.filter.TokenEnhancer;
 import org.uppower.sevenlion.security.model.AuthenticationTokenResponse;
 import org.uppower.sevenlion.security.model.token.SevenlionAuthenticationToken;

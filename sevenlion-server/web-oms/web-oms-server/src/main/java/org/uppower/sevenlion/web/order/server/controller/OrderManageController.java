@@ -1,10 +1,10 @@
 package org.uppower.sevenlion.web.order.server.controller;
 
+import cn.sevenlion.utils.response.CommonResult;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.web.order.common.model.vo.OrderVo;
 import org.uppower.sevenlion.web.order.server.service.OrderManageService;
 import org.uppower.sevenlion.web.product.common.client.ProductFeignClient;

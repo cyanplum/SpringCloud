@@ -19,8 +19,4 @@ public class CategoryManager {
 
     @Autowired
     private CategoryMapper categoryMapper;
-
-    public void selectCategory(Long id, Integer type) {
-
-    }
 }

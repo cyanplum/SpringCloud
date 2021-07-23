@@ -1,5 +1,6 @@
 package org.uppower.sevenlion.web.order.server.service;
 
+import cn.sevenlion.utils.response.CommonResult;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.internal.util.AlipaySignature;
@@ -7,7 +8,6 @@ import com.alipay.api.request.AlipayTradePagePayRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.web.order.server.config.AliPayProperties;
 
 

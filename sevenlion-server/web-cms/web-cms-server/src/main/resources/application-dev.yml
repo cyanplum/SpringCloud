@@ -4,10 +4,10 @@ spring:
     host: 47.115.130.89
     password: Sevenlion7
   datasource:
-    url: jdbc:mysql://rm-wz9g7s1hz6b7jw0nq3o.mysql.rds.aliyuncs.com:3306/sevenlion_cloud?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
+    url: jdbc:p6spy:mysql://rm-wz9g7s1hz6b7jw0nq3o.mysql.rds.aliyuncs.com:3306/sevenlion_cloud?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&allowMultiQueries=true
     username: sevenlion
     password: Sevenlion7
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     druid:
       initial-size: 5
       min-idle: 10
@@ -29,3 +29,14 @@ sevenlion:
     name: web
     injectClass: org.uppower.sevenlion.common.model.user.UserInfo
     accessTokenExpireIn: 720000
+  swagger:
+    scanUrl: org.uppower.sevenlion.web.cms.server.controller
+    enable: true
+    title: 前台cms
+    description: cms接口详情
+    version: 1.0
+oss:
+  minio: true
+  url: http://47.115.130.89:9000
+  accessKey: sevenlion
+  secretKey: Sevenlion7

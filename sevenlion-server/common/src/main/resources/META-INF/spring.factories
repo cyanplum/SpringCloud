@@ -2,4 +2,6 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   org.uppower.sevenlion.common.config.MybatisPlusConfig,\
   org.uppower.sevenlion.common.config.RedisConfig,\
   org.uppower.sevenlion.common.config.Swagger2Config,\
-  org.uppower.sevenlion.common.config.WebMvcConfig
+  org.uppower.sevenlion.common.config.WebMvcConfig,\
+  org.uppower.sevenlion.common.properties.SwaggerProperties,\
+  org.uppower.sevenlion.common.utils.SpringApplicationContext

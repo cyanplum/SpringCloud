@@ -1,8 +1,10 @@
 package org.uppower.sevenlion.common.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.uppower.sevenlion.common.properties.SwaggerProperties;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -29,25 +31,29 @@ import java.util.List;
 @EnableSwagger2
 @Profile(value = {"dev"})
 public class Swagger2Config {
+
+    @Autowired
+    private SwaggerProperties properties;
+
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.uppower.sevenlion.*.server.controller"))
+                .apis(RequestHandlerSelectors.basePackage(properties.getScanUrl()))
                 .paths(PathSelectors.any())
                 .build()
                 //添加登录认证
                 .securitySchemes(securitySchemes())
                 .securityContexts(securityContexts())
-                .enable(true);
+                .enable(properties.isEnable());
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("sevenlion-cloud系统")
-                .description("系统")
-                .version("1.0")
+                .title(properties.getTitle())
+                .description(properties.getDescription())
+                .version(properties.getVersion())
                 .build();
     }
 

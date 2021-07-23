@@ -46,4 +46,12 @@ public enum CategoryTypeEnum {
         }
         throw new BaseException("内部错误！");
     }
+
+    @Override
+    public String toString() {
+        return "CategoryTypeEnum{" +
+                "type=" + type +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

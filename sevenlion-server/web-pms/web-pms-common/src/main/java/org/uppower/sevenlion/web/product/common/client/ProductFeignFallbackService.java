@@ -1,7 +1,7 @@
 package org.uppower.sevenlion.web.product.common.client;
 
+import cn.sevenlion.utils.response.CommonResult;
 import org.springframework.stereotype.Component;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
 import org.uppower.sevenlion.web.product.common.model.result.ProductResult;
 

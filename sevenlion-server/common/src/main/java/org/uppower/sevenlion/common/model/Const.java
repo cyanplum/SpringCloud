@@ -12,7 +12,7 @@ package org.uppower.sevenlion.common.model;
  */
 public class Const {
 
-    public static final String BUCKET_NAME = "cloud_sevenlion";
+    public static final String BUCKET_NAME = "sevenlion";
 
     public static final String ADMIN_DEFAULT_PASSWORD = "123456";
 }

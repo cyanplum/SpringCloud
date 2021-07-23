@@ -1,12 +1,12 @@
 package org.uppower.sevenlion.web.product.server.service;
 
+import cn.sevenlion.utils.response.CommonResult;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
 import org.uppower.sevenlion.web.product.common.model.entity.ProductEntity;
 import org.uppower.sevenlion.web.product.common.model.result.CartResult;

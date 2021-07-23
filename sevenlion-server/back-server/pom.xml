@@ -28,7 +28,7 @@
         </dependency>
         <dependency>
             <groupId>org.uppower.sevenlion.cloud</groupId>
-            <artifactId>oss-common</artifactId>
+            <artifactId>oss</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

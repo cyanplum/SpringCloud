@@ -1,5 +1,6 @@
 package org.uppower.sevenlion.back.server.service;
 
+import cn.sevenlion.utils.response.CommonResult;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.BeanUtils;
@@ -26,9 +27,9 @@ import org.uppower.sevenlion.common.enums.VipLevelTypeEnum;
 import org.uppower.sevenlion.common.exceptions.BackException;
 import org.uppower.sevenlion.common.model.Const;
 import org.uppower.sevenlion.common.model.admin.AdminInfo;
-import org.uppower.sevenlion.common.utils.CommonResult;
 import org.uppower.sevenlion.common.utils.PageInfo;
-import org.uppower.sevenlion.oss.common.utils.OssUtils;
+import org.uppower.sevenlion.oss.utils.OssUtils;
+
 
 import java.util.List;
 import java.util.Map;

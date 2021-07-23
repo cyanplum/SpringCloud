@@ -29,4 +29,16 @@ public class CategoryQueryModel {
 
     @ApiModelProperty("状态")
     private Integer status;
+
+    @ApiModelProperty("pId")
+    private Long pId;
+
+    public CategoryQueryModel() {
+    }
+
+    public CategoryQueryModel(Integer type, Integer status, Long pId) {
+        this.type = type;
+        this.status = status;
+        this.pId = pId;
+    }
 }

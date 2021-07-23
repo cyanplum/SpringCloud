@@ -1,14 +1,22 @@
 package org.uppower.sevenlion.web.cms.server.controller;
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.sevenlion.utils.response.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.uppower.sevenlion.common.utils.CommonResult;
+import io.swagger.annotations.ApiParam;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.uppower.sevenlion.oss.model.result.FileInfoResult;
+import org.uppower.sevenlion.oss.utils.FileUploadUtils;
 import org.uppower.sevenlion.web.cms.server.model.query.CategoryQueryModel;
-import org.uppower.sevenlion.web.cms.server.service.CategoryService;
+import org.uppower.sevenlion.web.cms.server.model.vo.CategoryVo;
+import org.uppower.sevenlion.web.cms.server.provider.CategoryProvider;
+
+import java.util.List;
+
+import static org.uppower.sevenlion.common.model.Const.BUCKET_NAME;
 
 /**
  * @author create by:
@@ -25,12 +33,20 @@ import org.uppower.sevenlion.web.cms.server.service.CategoryService;
 @RequestMapping("/category")
 public class CategoryController {
 
-    @Autowired
-    private CategoryService categoryService;
-
     @ApiOperation("查询类目列表")
     @GetMapping
-    public CommonResult selectCategory(CategoryQueryModel queryModel) {
-        return CommonResult.success(categoryService.selectCategory(queryModel));
+    public CommonResult<List<CategoryVo>> selectCategory(CategoryQueryModel queryModel) {
+        List<CategoryVo> result = null;
+        if (ObjectUtil.isNotNull(queryModel.getType())) {
+            result = CategoryProvider.getCategoryByType(queryModel.getType());
+        }
+        return CommonResult.success(result);
+    }
+
+    @ApiOperation("文件上传")
+    @PostMapping("/upload")
+    @Transactional(rollbackFor = Exception.class)
+    public CommonResult<FileInfoResult> upload(@ApiParam(required = true, value = "二进制文件流") @RequestParam("file") MultipartFile file) {
+        return CommonResult.success(FileUploadUtils.upload(file, BUCKET_NAME));
     }
 }

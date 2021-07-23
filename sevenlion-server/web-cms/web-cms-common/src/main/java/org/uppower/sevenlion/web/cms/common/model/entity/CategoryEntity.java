@@ -35,8 +35,8 @@ public class CategoryEntity implements Serializable {
     private Long id;
 
     @ApiModelProperty(value = "上级id")
-    @TableField("p_id")
-    private Long pId;
+    @TableField("super_id")
+    private Long superId;
 
     @ApiModelProperty(value = "类目名称")
     @TableField("name")

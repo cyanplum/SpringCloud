@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.uppower.sevenlion.oss.config.OssConfig,\
+  org.uppower.sevenlion.oss.processor.ImageFieldProcessor
