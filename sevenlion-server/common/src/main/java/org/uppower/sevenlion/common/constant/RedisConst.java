@@ -17,4 +17,10 @@ public class RedisConst {
      * 类目列表
      */
     public final static String CATEGORY_LIST = "CATEGORY_LIST";
+
+    public final static String ADD_CART_LOCK = "ADD_CART_LOCK::%s";
+
+    public final static String ADD_CART_MAP = "ADD_CART::%s";
+
+    public final static String ADD_CART_KEY = "ADD_CART::%s::%s";
 }

@@ -3,13 +3,10 @@ package org.uppower.sevenlion.web.psm.server.manager;
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Multimap;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.uppower.sevenlion.common.jsonobject.LabelObject;
 import org.uppower.sevenlion.web.pms.common.model.entity.LabelContentEntity;
 import org.uppower.sevenlion.web.pms.common.model.entity.LabelEntity;
 import org.uppower.sevenlion.web.pms.common.model.entity.ProductLabelEntity;
@@ -18,10 +15,20 @@ import org.uppower.sevenlion.web.pms.common.model.vo.LabelVo;
 import org.uppower.sevenlion.web.pms.dao.mapper.LabelMapper;
 import org.uppower.sevenlion.web.pms.dao.mapper.ProductLabelMapper;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author create by:
+ * *      ____        ___  ___       __          __
+ * *    /  _  \     /   |/   |      | |        / /
+ * *   | | | |     / /|   /| |     | |  __   / /
+ * *  | | | |     / / |__/ | |    | | /  | / /
+ * * | |_| |_    / /       | |   | |/   |/ /
+ * * \_______|  /_/        |_|  |___/|___/
+ * @date 2021/7/23 10:09 下午
+ * 标签管理
+ */
 @Service
 public class LabelManager {
 
@@ -70,6 +77,13 @@ public class LabelManager {
         }
 
         return result;
+    }
+
+    public List<LabelEntity> selectByIds(List<Long> ids) {
+        if (CollUtil.isEmpty(ids)) {
+            return Lists.newArrayList();
+        }
+        return labelMapper.selectList(new QueryWrapper<LabelEntity>().lambda().in(LabelEntity::getId,ids));
     }
 
 }

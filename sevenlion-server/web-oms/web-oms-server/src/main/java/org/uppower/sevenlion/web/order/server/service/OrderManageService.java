@@ -13,7 +13,7 @@
 //import org.uppower.sevenlion.web.order.common.model.entity.AlipayLogEntity;
 //import org.uppower.sevenlion.web.order.common.model.entity.OrderEntity;
 //import org.uppower.sevenlion.web.order.common.model.jsonobject.ProductSnapObject;
-//import org.uppower.sevenlion.web.order.common.model.result.CartResult;
+//import org.uppower.sevenlion.web.order.common.model.result.CartVo;
 //import org.uppower.sevenlion.web.order.common.model.vo.OrderVo;
 //import org.uppower.sevenlion.web.order.common.utils.RedisUtils;
 //import org.uppower.sevenlion.web.order.common.utils.TradeOrderNoGenerator;
@@ -127,9 +127,9 @@
 //        if (vo.getFlag() == 1) {
 //            vo.getProductOrders().forEach(it -> {
 //                Object product = redisTemplate.opsForHash().get(vo.getId().toString(), it.getProductId().toString());
-//                CartResult cartResult = null;
+//                CartVo cartResult = null;
 //                try {
-//                    cartResult = objectMapper.readValue(objectMapper.writeValueAsString(product), CartResult.class);
+//                    cartResult = objectMapper.readValue(objectMapper.writeValueAsString(product), CartVo.class);
 //                } catch (Exception e) {
 //                }
 //                if (cartResult != null) {

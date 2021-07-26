@@ -26,6 +26,7 @@ import java.util.List;
  * * | |_| |_    / /       | |   | |/   |/ /
  * * \_______|  /_/        |_|  |___/|___/
  * @date 2021/7/23 10:09 下午
+ * 产品管理
  */
 @Service
 public class ProductsManager {
@@ -63,6 +64,13 @@ public class ProductsManager {
         queryWrapper.eq(ProductsEntity::getStatus, BaseStatusEnum.ONLINE.getStatus());
         queryWrapper.eq(ProductsEntity::getId, id);
         return productsMapper.selectOne(queryWrapper);
+    }
+
+    public ProductContentEntity selectByContentId(Long productContentId) {
+        LambdaQueryWrapper<ProductContentEntity> queryWrapper = new QueryWrapper<ProductContentEntity>().lambda();
+        queryWrapper.eq(ProductContentEntity::getStatus, BaseStatusEnum.ONLINE.getStatus());
+        queryWrapper.eq(ProductContentEntity::getId, productContentId);
+        return contentMapper.selectOne(queryWrapper);
     }
 
     public List<ProductContentEntity> selectContentByProductId(Long productId) {

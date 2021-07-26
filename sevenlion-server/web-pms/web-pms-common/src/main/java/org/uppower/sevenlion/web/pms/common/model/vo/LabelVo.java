@@ -26,7 +26,6 @@ public class LabelVo {
     @ApiModelProperty(value = "名称")
     private String title;
 
-
     @ApiModelProperty(value = "内容")
     private String content;
 

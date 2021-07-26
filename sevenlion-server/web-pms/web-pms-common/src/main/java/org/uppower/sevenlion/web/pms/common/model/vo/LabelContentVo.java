@@ -11,6 +11,9 @@ public class LabelContentVo {
     @ApiModelProperty(value = "主键id")
     private Long id;
 
+    @ApiModelProperty(value = "标签id")
+    private Long labelId;
+
     @ApiModelProperty(value = "名称")
     private String title;
 
