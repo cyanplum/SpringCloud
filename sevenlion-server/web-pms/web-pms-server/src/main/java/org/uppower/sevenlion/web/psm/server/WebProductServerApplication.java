@@ -1,11 +1,10 @@
-package org.uppower.sevenlion.web.cms.server;
+package org.uppower.sevenlion.web.psm.server;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.uppower.sevenlion.security.annotation.EnableSevenlionSecurity;
-import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * @author create by:
@@ -15,15 +14,14 @@ import org.springframework.cache.annotation.EnableCaching;
  * *  | | | |     / / |__/ | |    | | /  | / /
  * * | |_| |_    / /       | |   | |/   |/ /
  * * \_______|  /_/        |_|  |___/|___/
- * @date 2021/7/8 3:50 下午
+ * @date 2021/4/22 10:19 上午
  */
 @SpringBootApplication
-@MapperScan("org.uppower.sevenlion.web.cms.dao")
-@EnableCaching
-@EnableSevenlionSecurity
-@EnableFeignClients("org.uppower.sevenlion.web.common.client")
-public class WebCmsServerApplication {
+@EnableDiscoveryClient
+@EnableFeignClients(basePackages = "org.uppower.sevenlion.web.**.common")
+@MapperScan("org.uppower.sevenlion.web.pms.dao")
+public class WebProductServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(WebCmsServerApplication.class, args);
+        SpringApplication.run(WebProductServerApplication.class,args);
     }
 }

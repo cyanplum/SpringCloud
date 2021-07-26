@@ -3,7 +3,7 @@ package org.uppower.sevenlion.web.order.common.model.vo;
 
 import lombok.Data;
 import org.uppower.sevenlion.web.order.common.model.jsonobject.AddressJsonObject;
-import org.uppower.sevenlion.web.product.common.model.bo.ProductOrderBo;
+import org.uppower.sevenlion.web.pms.common.model.bo.ProductOrderBo;
 
 import java.util.List;
 

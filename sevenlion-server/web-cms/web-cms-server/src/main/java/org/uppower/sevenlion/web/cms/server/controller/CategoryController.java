@@ -14,6 +14,7 @@ import org.uppower.sevenlion.oss.utils.FileUploadUtils;
 import org.uppower.sevenlion.web.cms.server.model.query.CategoryQueryModel;
 import org.uppower.sevenlion.web.cms.server.model.vo.CategoryVo;
 import org.uppower.sevenlion.web.cms.server.provider.CategoryProvider;
+import org.uppower.sevenlion.web.cms.server.service.CategoryService;
 
 import java.util.List;
 
@@ -37,6 +38,9 @@ public class CategoryController {
     @Autowired
     private CategoryProvider categoryProvider;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @ApiOperation("根据类型查询类目列表")
     @GetMapping("/type/{type:.+}")
     public CommonResult<List<CategoryVo>> queryCategoryByType(@PathVariable Integer type) {
@@ -49,10 +53,17 @@ public class CategoryController {
         return CommonResult.success(categoryProvider.getCategoryByPId(id));
     }
 
+    @GetMapping("/queryProductsById")
+    public CommonResult<List<Long>> queryProductsById(List<Long> categoryIds) {
+        return CommonResult.success(categoryService.queryProductsById(categoryIds));
+    }
+
     @ApiOperation("文件上传")
     @PostMapping("/upload")
     @Transactional(rollbackFor = Exception.class)
     public CommonResult<FileInfoResult> upload(@ApiParam(required = true, value = "二进制文件流") @RequestParam("file") MultipartFile file) {
         return CommonResult.success(FileUploadUtils.upload(file, BUCKET_NAME));
     }
+
+
 }

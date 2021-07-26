@@ -15,7 +15,7 @@ management:
       exposure:
         include: '*'
 mybatis-plus:
-  #type-handlers-package: org.uppower.qule.core.typehandler
+  type-handlers-package: org.uppower.sevenlion.common.typehandler
   global-config:
     db-config:
       logic-delete-value: 1
