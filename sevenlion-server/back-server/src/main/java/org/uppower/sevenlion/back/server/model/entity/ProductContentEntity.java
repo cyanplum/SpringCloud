@@ -13,18 +13,18 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 产品详情表
+ * 产品内容表
  * </p>
  *
  * @author qmw
- * @since 2021-06-16
+ * @since 2021-07-27
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("products_detail")
-@ApiModel(value="ProductsDetailEntity对象", description="产品详情表")
-public class ProductsDetailEntity implements Serializable {
+@TableName("product_content")
+@ApiModel(value="ProductContentEntity对象", description="产品内容表")
+public class ProductContentEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,10 +59,6 @@ public class ProductsDetailEntity implements Serializable {
     @ApiModelProperty(value = "图片")
     @TableField("picture")
     private String picture;
-
-    @ApiModelProperty(value = "标签")
-    @TableField("lable")
-    private String lable;
 
     @ApiModelProperty(value = "内容")
     @TableField("content")

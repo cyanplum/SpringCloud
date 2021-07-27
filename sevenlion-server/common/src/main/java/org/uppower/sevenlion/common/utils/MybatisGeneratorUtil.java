@@ -38,8 +38,8 @@ import java.util.Scanner;
  */
 public class MybatisGeneratorUtil {
 
-    public static final String path = "/sevenlion-server/web-pms/web-pms-dao";
-    public static final String packageConfig = "org.uppower.sevenlion.web.pms.dao";
+    public static final String path = "/sevenlion-server/back-server";
+    public static final String packageConfig = "org.uppower.sevenlion.back.server";
     public static final String modelConfig = "model";
     public static final String mapperConfig = "mapper";
     /**

@@ -12,17 +12,17 @@ import java.time.LocalDateTime;
 
 /**
  * <p>
- * 商品表
+ * 产品表
  * </p>
  *
  * @author qmw
- * @since 2021-06-02
+ * @since 2021-07-27
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("products")
-@ApiModel(value="ProductsEntity对象", description="商品表")
+@ApiModel(value="ProductsEntity对象", description="产品表")
 public class ProductsEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,6 +34,10 @@ public class ProductsEntity implements Serializable {
     @ApiModelProperty(value = "名称")
     @TableField("title")
     private String title;
+
+    @ApiModelProperty(value = "小图")
+    @TableField("small_picture")
+    private String smallPicture;
 
     @ApiModelProperty(value = "图片集合")
     @TableField("pictures")
@@ -51,10 +55,6 @@ public class ProductsEntity implements Serializable {
     @TableField("belong_id")
     private Long belongId;
 
-    @ApiModelProperty(value = "标签对象集合")
-    @TableField("lables")
-    private String lables;
-
     @ApiModelProperty(value = "内容")
     @TableField("content")
     private String content;
@@ -70,6 +70,10 @@ public class ProductsEntity implements Serializable {
     @ApiModelProperty(value = "(县、区)id")
     @TableField("district_id")
     private Long districtId;
+
+    @ApiModelProperty(value = "审核状态")
+    @TableField("audit")
+    private Integer audit;
 
     @ApiModelProperty(value = "状态")
     @TableField("status")
