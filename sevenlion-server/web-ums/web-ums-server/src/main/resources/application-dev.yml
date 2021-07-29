@@ -15,12 +15,12 @@ spring:
       max-wait: 60000
       filters: stat,wall,slf4j
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-#  rabbitmq:
-#    host: localhost
-#    port: 5672
-#    username: sevenlion
-#    password: sevenlion
-#    virtual-host: /
+  rabbitmq:
+    host: 47.115.130.89
+    port: 5672
+    username: sevenlion
+    password: sevenlion
+    virtual-host: /
 feign:
   sentinel:
     enabled: true
@@ -29,3 +29,9 @@ sevenlion:
     name: web
     injectClass: org.uppower.sevenlion.common.model.user.UserInfo
     accessTokenExpireIn: 720000
+  swagger:
+    scanUrl: org.uppower.sevenlion.web.ums.server.controller
+    enable: true
+    title: 前台ums
+    description: ums接口详情
+    version: 1.0
