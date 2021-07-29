@@ -38,8 +38,8 @@ import java.util.Scanner;
  */
 public class MybatisGeneratorUtil {
 
-    public static final String path = "/sevenlion-server/back-server";
-    public static final String packageConfig = "org.uppower.sevenlion.back.server";
+    public static final String path = "/sevenlion-server/web-ums/web-ums-dao";
+    public static final String packageConfig = "org.uppower.sevenlion.web.ums.dao";
     public static final String modelConfig = "model";
     public static final String mapperConfig = "mapper";
     /**
@@ -141,7 +141,7 @@ public class MybatisGeneratorUtil {
         strategy.setEntityBooleanColumnRemoveIsPrefix(true);
         strategy.setEntityBuilderModel(true);
         strategy.setRestControllerStyle(true);
-        strategy.setInclude("products","product_content","label","label_content","product_label","product_content_label","product_comment");
+        strategy.setInclude("sign_strategy","user_sign_log");
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());

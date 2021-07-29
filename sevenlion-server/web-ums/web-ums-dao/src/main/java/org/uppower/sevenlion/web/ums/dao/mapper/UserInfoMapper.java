@@ -1,6 +1,6 @@
 package org.uppower.sevenlion.web.ums.dao.mapper;
 
-import org.uppower.sevenlion.web.ums.dao.entity.UserInfoEntity;
+import org.uppower.sevenlion.web.ums.common.model.entity.UserInfoEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

@@ -36,6 +36,8 @@ public class RedisConst {
      */
     public final static String SING_IN_KEY = "SING_IN::%s";
 
+    public final static String SIGN_STRATEGY = "SIGN_STRATEGY";
+
     /**
      * 基础value
      */
