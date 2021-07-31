@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserSignLogMapper extends BaseMapper<UserSignLogEntity> {
 
+    UserSignLogEntity selectRecentById(Long userId);
 }

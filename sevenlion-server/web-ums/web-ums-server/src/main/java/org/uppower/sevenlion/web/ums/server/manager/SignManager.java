@@ -3,6 +3,7 @@ package org.uppower.sevenlion.web.ums.server.manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.uppower.sevenlion.web.ums.common.model.entity.SignStrategyEntity;
+import org.uppower.sevenlion.web.ums.common.model.entity.UserSignLogEntity;
 import org.uppower.sevenlion.web.ums.dao.mapper.SignStrategyMapper;
 import org.uppower.sevenlion.web.ums.dao.mapper.UserSignLogMapper;
 
@@ -31,5 +32,9 @@ public class SignManager {
     public List<SignStrategyEntity> selectStrategyList() {
         List<SignStrategyEntity> signStrategyEntities = signStrategyMapper.selectList(null);
         return signStrategyEntities;
+    }
+
+    public UserSignLogEntity queryRecentLog(Long userId) {
+        return userSignLogMapper.selectRecentById(userId);
     }
 }

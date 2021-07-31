@@ -51,7 +51,7 @@ public class UserController {
         if (ObjectUtil.isNull(userInfo)) {
             throw new BaseException("用户未登陆，请登录！");
         }
-        userService.singIn(userInfo.getUserId());
+        userService.signIn(userInfo.getUserId());
         return CommonResult.success();
     }
 

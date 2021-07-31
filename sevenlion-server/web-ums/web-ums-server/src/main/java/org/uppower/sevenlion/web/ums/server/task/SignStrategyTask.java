@@ -13,6 +13,7 @@ import org.uppower.sevenlion.web.ums.server.manager.SignManager;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -38,7 +39,7 @@ public class SignStrategyTask implements Runnable, InitializingBean {
     @Override
     public void run() {
         List<SignStrategyEntity> signStrategyEntities = signManager.selectStrategyList();
-        Map<Integer, Integer> map = signStrategyEntities.stream().collect(Collectors.toMap(SignStrategyEntity::getDay, SignStrategyEntity::getIntegral));
+        Map<Integer, SignStrategyEntity> map = signStrategyEntities.stream().collect(Collectors.toMap(SignStrategyEntity::getDay, Function.identity()));
         redisTemplate.opsForHash().putAll(RedisConst.SIGN_STRATEGY, map);
     }
 

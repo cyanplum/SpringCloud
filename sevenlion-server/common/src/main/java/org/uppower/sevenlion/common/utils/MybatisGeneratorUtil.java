@@ -141,7 +141,7 @@ public class MybatisGeneratorUtil {
         strategy.setEntityBooleanColumnRemoveIsPrefix(true);
         strategy.setEntityBuilderModel(true);
         strategy.setRestControllerStyle(true);
-        strategy.setInclude("sign_strategy","user_sign_log");
+        strategy.setInclude("score_log");
         strategy.setControllerMappingHyphenStyle(true);
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());

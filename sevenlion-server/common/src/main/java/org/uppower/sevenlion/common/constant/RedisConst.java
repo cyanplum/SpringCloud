@@ -27,8 +27,16 @@ public class RedisConst {
 
     public final static String ADD_CART_LOCK = "ADD_CART_LOCK::%s";
 
+    /**
+     * 用户购物车hash key
+     * 用户id
+     */
     public final static String ADD_CART_MAP = "ADD_CART::%s";
 
+    /**
+     * 购物车商品key
+     * 产品id + 标签排序list
+     */
     public final static String ADD_CART_KEY = "ADD_CART::%s::%s";
 
     /**
@@ -36,6 +44,9 @@ public class RedisConst {
      */
     public final static String SING_IN_KEY = "SING_IN::%s";
 
+    /**
+     * 签到规则
+     */
     public final static String SIGN_STRATEGY = "SIGN_STRATEGY";
 
     /**

@@ -2,4 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.uppower.sevenlion.web.ums.dao.mapper.UserInfoMapper">
 
+    <update id="incrScore">
+        update user_info
+            set `score` = `score` + #{incrValue}
+        where `user_id` = #{userId}
+    </update>
 </mapper>

@@ -31,7 +31,7 @@ public class UserInfoEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "用户id")
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "user_id")
     private Long userId;
 
     @ApiModelProperty(value = "积分")
